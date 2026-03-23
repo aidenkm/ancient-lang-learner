@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Noto Sans KR', system-ui, sans-serif;
+  --font-serif: 'Noto Serif', serif;
+  --color-duo-green: #58cc02;
+  --color-duo-green-dark: #46a302;
+  --color-duo-blue: #1cb0f6;
+  --color-duo-blue-dark: #1899d6;
+  --color-duo-red: #ff4b4b;
+  --color-duo-red-dark: #ea2b2b;
+  --color-duo-orange: #ff9600;
+  --color-duo-purple: #ce82ff;
+  --color-duo-yellow: #ffc800;
+  --color-duo-gray: #e5e5e5;
+  --color-duo-gray-dark: #afafaf;
+  --color-duo-bg: #131f24;
+  --color-duo-card: #1a2c35;
+  --color-duo-card-light: #233a45;
+  --color-duo-text: #ffffff;
+  --color-duo-text-dim: #93a8b1;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-duo-bg);
+  color: var(--color-duo-text);
+  font-family: var(--font-sans);
+}
+
+#root {
+  min-height: 100svh;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-duo-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-duo-card-light);
+  border-radius: 3px;
+}
+
+.greek-text {
+  font-family: var(--font-serif);
+  font-size: 1.2em;
+  letter-spacing: 0.02em;
+}
+
+.hebrew-text {
+  font-family: var(--font-serif);
+  font-size: 1.3em;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
