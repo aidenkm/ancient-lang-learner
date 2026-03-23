@@ -4,10 +4,18 @@ import { greekStageMeta } from './stages';
 import { greekVocabulary } from './db/vocabulary';
 import { greekVerbForms } from './db/verbForms';
 import { johnTexts } from './db/texts/john';
+import { markTexts } from './db/texts/mark';
+import { romansTexts } from './db/texts/romans';
+import { genesisLxxTexts } from './db/texts/genesis-lxx';
+import { firstJohnTexts } from './db/texts/firstJohn';
 
 // Text data registry — maps dataKey to verse arrays
 const textRegistry: Record<string, typeof johnTexts> = {
   john: johnTexts,
+  mark: markTexts,
+  'romans8': romansTexts,
+  'genesis-lxx': genesisLxxTexts,
+  firstJohn: firstJohnTexts,
 };
 
 // Build all stages dynamically from metadata + DB data
