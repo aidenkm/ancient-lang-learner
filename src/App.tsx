@@ -2,36 +2,58 @@ import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Language, Lesson } from './types';
 import { useGameState } from './hooks/useGameState';
+import { useAuth } from './hooks/useAuth';
+import { isSupabaseConfigured } from './lib/supabase';
 import { greekStages } from './data/greek/index';
 import { hebrewStages } from './data/hebrew/index';
+import AuthScreen from './components/AuthScreen';
 import LanguageSelect from './components/LanguageSelect';
 import PlacementTest from './components/PlacementTest';
 import LessonMap from './components/LessonMap';
 import LessonPlayer from './components/LessonPlayer';
 
-type Screen = 'languageSelect' | 'placementChoice' | 'placementTest' | 'lessonMap' | 'lesson';
+// Admin email — gets all lessons unlocked
+const ADMIN_EMAILS = ['aidenkm0@gmail.com'];
+
+type Screen = 'auth' | 'languageSelect' | 'placementChoice' | 'placementTest' | 'lessonMap' | 'lesson';
 
 function App() {
-  const { gameState, selectLanguage, getProgress, addXp, completeLesson, updateStreak, completePlacement, updateProgress } = useGameState();
-  const [screen, setScreen] = useState<Screen>('languageSelect');
+  const { user, loading: authLoading, signIn, signUp, signOut, configured: authConfigured } = useAuth();
+  const isAdmin = user?.email ? ADMIN_EMAILS.includes(user.email) : false;
+  const { gameState, selectLanguage, getProgress, addXp, completeLesson, updateStreak, completePlacement, updateProgress } = useGameState(user?.id);
+  const [screen, setScreen] = useState<Screen>(authConfigured ? 'auth' : 'languageSelect');
   const [currentLesson, setCurrentLesson] = useState<Lesson | null>(null);
+  const [guestMode, setGuestMode] = useState(false);
 
-  // Determine initial screen
+  // Determine initial screen after auth loads
   useEffect(() => {
+    if (authLoading) return;
+
+    if (authConfigured && !user && !guestMode) {
+      setScreen('auth');
+      return;
+    }
+
     if (gameState.selectedLanguage) {
       const progress = gameState[gameState.selectedLanguage];
-      if (progress.placementCompleted) {
+      if (progress.placementCompleted || isAdmin) {
         setScreen('lessonMap');
       } else {
         setScreen('placementChoice');
       }
+    } else {
+      setScreen('languageSelect');
     }
-  }, []);
+  }, [authLoading, user, guestMode]);
 
   const handleLanguageSelect = (lang: Language) => {
     selectLanguage(lang);
     const progress = gameState[lang];
-    if (progress.placementCompleted) {
+    if (progress.placementCompleted || isAdmin) {
+      // Admin skips placement, gets stage 5 unlocked
+      if (isAdmin && !progress.placementCompleted) {
+        completePlacement(25, 5);
+      }
       setScreen('lessonMap');
     } else {
       setScreen('placementChoice');
@@ -66,7 +88,6 @@ function App() {
     completeLesson(currentLesson.id);
     updateStreak();
 
-    // Check if we should unlock next stage
     const lang = gameState.selectedLanguage!;
     const stages = lang === 'greek' ? greekStages : hebrewStages;
     const progress = gameState[lang];
@@ -93,6 +114,25 @@ function App() {
     setScreen('languageSelect');
   };
 
+  // Get progress with admin override (all stages unlocked)
+  const getProgressForMap = () => {
+    const progress = getProgress();
+    if (!progress) return null;
+    if (isAdmin) {
+      return { ...progress, currentStage: 5, placementCompleted: true };
+    }
+    return progress;
+  };
+
+  // Loading state
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-duo-text-dim">로딩 중...</div>
+      </div>
+    );
+  }
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -102,8 +142,35 @@ function App() {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
       >
+        {screen === 'auth' && (
+          <AuthScreen
+            onSignIn={signIn}
+            onSignUp={signUp}
+            onSkip={() => { setGuestMode(true); setScreen('languageSelect'); }}
+          />
+        )}
+
         {screen === 'languageSelect' && (
-          <LanguageSelect onSelect={handleLanguageSelect} />
+          <div>
+            {/* User info bar */}
+            {(user || guestMode) && (
+              <div className="p-3 flex justify-between items-center text-sm">
+                <span className="text-duo-text-dim">
+                  {user ? `${user.email}${isAdmin ? ' (Admin)' : ''}` : '게스트 모드'}
+                </span>
+                {user ? (
+                  <button onClick={async () => { await signOut(); setGuestMode(false); setScreen('auth'); }} className="text-duo-text-dim hover:text-duo-text cursor-pointer">
+                    로그아웃
+                  </button>
+                ) : authConfigured ? (
+                  <button onClick={() => { setGuestMode(false); setScreen('auth'); }} className="text-duo-text-dim hover:text-duo-text cursor-pointer">
+                    로그인
+                  </button>
+                ) : null}
+              </div>
+            )}
+            <LanguageSelect onSelect={handleLanguageSelect} />
+          </div>
         )}
 
         {screen === 'placementChoice' && gameState.selectedLanguage && (
@@ -121,7 +188,6 @@ function App() {
               </h2>
               <p className="text-duo-text-dim mb-8">
                 배치테스트를 통해 현재 수준을 확인하고 적절한 단계부터 시작하세요.
-                이미 기초를 알고 있다면 테스트를 추천합니다!
               </p>
 
               <div className="space-y-3">
@@ -173,7 +239,7 @@ function App() {
         {screen === 'lessonMap' && gameState.selectedLanguage && (
           <LessonMap
             language={gameState.selectedLanguage}
-            progress={getProgress()!}
+            progress={getProgressForMap()!}
             onSelectLesson={handleSelectLesson}
             onBack={handleBack}
           />

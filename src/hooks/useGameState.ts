@@ -1,11 +1,50 @@
+import { useEffect, useCallback, useRef } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 import { GameState, Language, defaultGameState, defaultProgress } from '../types';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 
-export function useGameState() {
+export function useGameState(userId?: string | null) {
   const [gameState, setGameState] = useLocalStorage<GameState>('ancientLangState', defaultGameState);
+  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Load from Supabase on mount (if configured and logged in)
+  useEffect(() => {
+    if (!isSupabaseConfigured() || !userId) return;
+    supabase
+      .from('user_progress')
+      .select('game_state')
+      .eq('user_id', userId)
+      .single()
+      .then(({ data }) => {
+        if (data?.game_state) {
+          setGameState(data.game_state as GameState);
+        }
+      });
+  }, [userId]);
+
+  // Save to Supabase (debounced)
+  const saveToCloud = useCallback((state: GameState) => {
+    if (!isSupabaseConfigured() || !userId) return;
+    if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
+    saveTimeoutRef.current = setTimeout(() => {
+      supabase
+        .from('user_progress')
+        .upsert({ user_id: userId, game_state: state, updated_at: new Date().toISOString() })
+        .then(() => {});
+    }, 1000); // debounce 1s
+  }, [userId]);
+
+  // Wrapper that saves to both LocalStorage and cloud
+  const setState = useCallback((updater: GameState | ((prev: GameState) => GameState)) => {
+    setGameState((prev) => {
+      const next = typeof updater === 'function' ? updater(prev) : updater;
+      saveToCloud(next);
+      return next;
+    });
+  }, [setGameState, saveToCloud]);
 
   const selectLanguage = (lang: Language) => {
-    setGameState(prev => ({ ...prev, selectedLanguage: lang }));
+    setState(prev => ({ ...prev, selectedLanguage: lang }));
   };
 
   const getProgress = () => {
@@ -16,7 +55,7 @@ export function useGameState() {
   const updateProgress = (updates: Partial<typeof defaultGameState.greek>) => {
     if (!gameState.selectedLanguage) return;
     const lang = gameState.selectedLanguage;
-    setGameState(prev => ({
+    setState(prev => ({
       ...prev,
       [lang]: { ...prev[lang], ...updates },
     }));
@@ -27,7 +66,7 @@ export function useGameState() {
     const lang = gameState.selectedLanguage;
     const currentXp = gameState[lang].xp + amount;
     const newLevel = Math.floor(currentXp / 100) + 1;
-    setGameState(prev => ({
+    setState(prev => ({
       ...prev,
       totalXp: prev.totalXp + amount,
       [lang]: {
@@ -43,7 +82,7 @@ export function useGameState() {
     const lang = gameState.selectedLanguage;
     const progress = gameState[lang];
     const crowns = progress.lessonCrowns[lessonId] || 0;
-    setGameState(prev => ({
+    setState(prev => ({
       ...prev,
       [lang]: {
         ...prev[lang],
@@ -72,7 +111,7 @@ export function useGameState() {
 
     const newStreak = lastDate === yesterdayStr ? gameState[lang].streak + 1 : 1;
 
-    setGameState(prev => ({
+    setState(prev => ({
       ...prev,
       [lang]: {
         ...prev[lang],
@@ -85,7 +124,7 @@ export function useGameState() {
   const completePlacement = (score: number, startStage: number) => {
     if (!gameState.selectedLanguage) return;
     const lang = gameState.selectedLanguage;
-    setGameState(prev => ({
+    setState(prev => ({
       ...prev,
       [lang]: {
         ...prev[lang],
@@ -97,7 +136,7 @@ export function useGameState() {
   };
 
   const resetProgress = (lang: Language) => {
-    setGameState(prev => ({
+    setState(prev => ({
       ...prev,
       [lang]: defaultProgress(lang),
     }));
