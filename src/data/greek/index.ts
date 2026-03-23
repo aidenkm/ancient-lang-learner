@@ -4,6 +4,7 @@ import { greekStageMeta } from './stages';
 import { greekVocabulary } from './db/vocabulary';
 import { greekVerbForms } from './db/verbForms';
 import { johnTexts } from './db/texts/john';
+import { john3Texts } from './db/texts/john3';
 import { markTexts } from './db/texts/mark';
 import { romansTexts } from './db/texts/romans';
 import { genesisLxxTexts } from './db/texts/genesis-lxx';
@@ -11,10 +12,14 @@ import { firstJohnTexts } from './db/texts/firstJohn';
 import { platoTexts } from './db/texts/plato';
 import { aristotleTexts } from './db/texts/aristotle';
 import { philippiansTexts } from './db/texts/philippians';
+import { josephusTexts } from './db/texts/josephus';
+import { philoTexts } from './db/texts/philo';
+import { apostolicFathersTexts } from './db/texts/apostolicFathers';
+import { hebrewsTexts } from './db/texts/hebrews';
 
-// Text data registry — maps dataKey to verse arrays
 const textRegistry: Record<string, typeof johnTexts> = {
   john: johnTexts,
+  john3: john3Texts,
   mark: markTexts,
   romans8: romansTexts,
   'genesis-lxx': genesisLxxTexts,
@@ -22,9 +27,13 @@ const textRegistry: Record<string, typeof johnTexts> = {
   plato: platoTexts,
   aristotle: aristotleTexts,
   philippians: philippiansTexts,
+  'josephus-war': josephusTexts,
+  'josephus-ant': josephusTexts,
+  philo: philoTexts,
+  didache: apostolicFathersTexts,
+  hebrews: hebrewsTexts,
 };
 
-// Build all stages dynamically from metadata + DB data
 export const greekStages: StageInfo[] = greekStageMeta.map((stageMeta) => {
   const units = stageMeta.units.map((unitMeta: UnitMeta) => {
     const vocabSlice = unitMeta.vocabRange
