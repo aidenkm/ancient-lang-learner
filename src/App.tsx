@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Language, Lesson } from './types';
 import { useGameState } from './hooks/useGameState';
-import { greekStages } from './data/greek/lessons';
+import { greekStages } from './data/greek/index';
 import { hebrewStages } from './data/hebrew/lessons';
 import LanguageSelect from './components/LanguageSelect';
 import PlacementTest from './components/PlacementTest';

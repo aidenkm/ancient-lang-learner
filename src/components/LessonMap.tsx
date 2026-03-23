@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Language, StageInfo, UserProgress } from '../types';
-import { greekStages } from '../data/greek/lessons';
+import { greekStages } from '../data/greek/index';
 import { hebrewStages } from '../data/hebrew/lessons';
 import XPBar from './gamification/XPBar';
 import StreakCounter from './gamification/StreakCounter';
