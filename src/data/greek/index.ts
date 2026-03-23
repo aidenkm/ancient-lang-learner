@@ -8,14 +8,20 @@ import { markTexts } from './db/texts/mark';
 import { romansTexts } from './db/texts/romans';
 import { genesisLxxTexts } from './db/texts/genesis-lxx';
 import { firstJohnTexts } from './db/texts/firstJohn';
+import { platoTexts } from './db/texts/plato';
+import { aristotleTexts } from './db/texts/aristotle';
+import { philippiansTexts } from './db/texts/philippians';
 
 // Text data registry — maps dataKey to verse arrays
 const textRegistry: Record<string, typeof johnTexts> = {
   john: johnTexts,
   mark: markTexts,
-  'romans8': romansTexts,
+  romans8: romansTexts,
   'genesis-lxx': genesisLxxTexts,
   firstJohn: firstJohnTexts,
+  plato: platoTexts,
+  aristotle: aristotleTexts,
+  philippians: philippiansTexts,
 };
 
 // Build all stages dynamically from metadata + DB data

@@ -96,6 +96,9 @@ export const greekStageMeta = [
       { id: 'g5-u19', title: '갈라디아서 2장', description: '바울의 복음 변호 (2:15-21)', icon: '📨', stage: 5, lessonType: 'text' as const, dataKey: 'galatians' },
       // 고린도전서
       { id: 'g5-u20', title: '고린도전서 13장', description: '사랑의 장 (13:1-13)', icon: '❤️', stage: 5, lessonType: 'text' as const, dataKey: 'corinthians' },
+      // 고전 철학
+      { id: 'g5-u21', title: '플라톤', description: '변론, 파이돈, 국가, 향연, 티마이오스', icon: '🏺', stage: 5, lessonType: 'text' as const, dataKey: 'plato' },
+      { id: 'g5-u22', title: '아리스토텔레스', description: '영혼론, 정치학, 니코마코스 윤리학, 형이상학', icon: '📐', stage: 5, lessonType: 'text' as const, dataKey: 'aristotle' },
     ] satisfies UnitMeta[],
   },
 ];
