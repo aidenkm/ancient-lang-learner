@@ -64,7 +64,8 @@ export function generateVocabMatching(
 }
 
 /**
- * Takes a verse, picks one word to blank out, asks to fill it.
+ * Takes a verse, picks one word to blank out, asks to choose it from options.
+ * Changed from text input to multipleChoice since users can't type Greek/Hebrew on mobile.
  */
 export function generateFillBlank(
   id: string,
@@ -77,11 +78,26 @@ export function generateFillBlank(
     .map((w, i) => (i === safeIndex ? '______' : w.word))
     .join(' ');
 
+  // Build distractors from other words in the verse
+  const distractors = verse.words
+    .filter((_, i) => i !== safeIndex)
+    .map((w) => w.word)
+    .filter((w, i, arr) => arr.indexOf(w) === i) // unique
+    .slice(0, 3);
+
+  // If not enough distractors, pad with variations
+  while (distractors.length < 3) {
+    distractors.push(`(${distractors.length + 1})`);
+  }
+
+  const options = seededShuffle([targetWord.word, ...distractors.slice(0, 3)], id);
+
   return {
     id,
-    type: 'fillBlank',
+    type: 'multipleChoice',
     question: blankedText,
-    instruction: `빈칸에 들어갈 단어를 쓰세요. (${verse.ref})`,
+    instruction: `빈칸에 들어갈 단어를 고르세요. (${verse.ref})`,
+    options,
     correctAnswer: targetWord.word,
     hint: targetWord.gloss,
   };
