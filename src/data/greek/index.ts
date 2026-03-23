@@ -16,6 +16,8 @@ import { josephusTexts } from './db/texts/josephus';
 import { philoTexts } from './db/texts/philo';
 import { apostolicFathersTexts } from './db/texts/apostolicFathers';
 import { hebrewsTexts } from './db/texts/hebrews';
+import { galatiansTexts } from './db/texts/galatians';
+import { corinthiansTexts } from './db/texts/corinthians';
 
 const textRegistry: Record<string, typeof johnTexts> = {
   john: johnTexts,
@@ -32,6 +34,8 @@ const textRegistry: Record<string, typeof johnTexts> = {
   philo: philoTexts,
   didache: apostolicFathersTexts,
   hebrews: hebrewsTexts,
+  galatians: galatiansTexts,
+  corinthians: corinthiansTexts,
 };
 
 export const greekStages: StageInfo[] = greekStageMeta.map((stageMeta) => {
