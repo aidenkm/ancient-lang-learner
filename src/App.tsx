@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Language, Lesson } from './types';
 import { useGameState } from './hooks/useGameState';
 import { greekStages } from './data/greek/index';
-import { hebrewStages } from './data/hebrew/lessons';
+import { hebrewStages } from './data/hebrew/index';
 import LanguageSelect from './components/LanguageSelect';
 import PlacementTest from './components/PlacementTest';
 import LessonMap from './components/LessonMap';
