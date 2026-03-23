@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Exercise, Language, Lesson } from '../types';
 import ProgressBar from './common/ProgressBar';
@@ -16,18 +16,81 @@ interface LessonPlayerProps {
   onQuit: () => void;
 }
 
+/**
+ * Create a review variant of a failed exercise.
+ * Changes the exercise slightly so the user sees it differently the second time.
+ */
+function createReviewExercise(original: Exercise, attempt: number): Exercise {
+  const reviewId = `${original.id}-review-${attempt}`;
+
+  // For multipleChoice: shuffle options differently
+  if (original.type === 'multipleChoice' && original.options) {
+    const shuffled = [...original.options].sort(() => Math.random() - 0.5);
+    return {
+      ...original,
+      id: reviewId,
+      instruction: `복습: ${original.instruction}`,
+      options: shuffled,
+    };
+  }
+
+  // For matching: keep same but mark as review
+  if (original.type === 'matching') {
+    return {
+      ...original,
+      id: reviewId,
+      instruction: `복습: ${original.instruction}`,
+    };
+  }
+
+  // For translation: shuffle options
+  if (original.type === 'translation' && original.options) {
+    const shuffled = [...original.options].sort(() => Math.random() - 0.5);
+    return {
+      ...original,
+      id: reviewId,
+      instruction: `복습: ${original.instruction}`,
+      options: shuffled,
+    };
+  }
+
+  // For wordArrange: same exercise, different shuffle
+  if (original.type === 'wordArrange' && original.words) {
+    const shuffled = [...original.words].sort(() => Math.random() - 0.5);
+    return {
+      ...original,
+      id: reviewId,
+      instruction: `복습: ${original.instruction}`,
+      words: shuffled,
+    };
+  }
+
+  // Default: just mark as review
+  return {
+    ...original,
+    id: reviewId,
+    instruction: `복습: ${original.instruction}`,
+  };
+}
+
 export default function LessonPlayer({ lesson, language, onComplete, onQuit }: LessonPlayerProps) {
+  // Build exercise queue: original exercises + space for review exercises
+  const [exerciseQueue, setExerciseQueue] = useState<Exercise[]>([...lesson.exercises]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
+  const [totalAttempts, setTotalAttempts] = useState(0);
   const [finished, setFinished] = useState(false);
   const [comboCount, setComboCount] = useState(0);
   const [showCombo, setShowCombo] = useState(false);
+  const [reviewCount, setReviewCount] = useState(0);
 
-  const exercises = lesson.exercises;
-  const exercise = exercises[currentIndex];
-  const progress = ((currentIndex) / exercises.length) * 100;
+  const exercise = exerciseQueue[currentIndex];
+  const originalCount = lesson.exercises.length;
+  const progress = ((currentIndex) / exerciseQueue.length) * 100;
 
   const handleAnswer = (correct: boolean) => {
+    setTotalAttempts(prev => prev + 1);
+
     if (correct) {
       setCorrectCount(prev => prev + 1);
       setComboCount(prev => prev + 1);
@@ -37,10 +100,18 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
       }
     } else {
       setComboCount(0);
+      // Add review exercise to the end of the queue
+      const reviewEx = createReviewExercise(exercise, reviewCount + 1);
+      setExerciseQueue(prev => [...prev, reviewEx]);
+      setReviewCount(prev => prev + 1);
     }
 
-    if (currentIndex >= exercises.length - 1) {
+    if (currentIndex >= exerciseQueue.length - 1 && correct) {
+      // Only finish if the last exercise was answered correctly
       setFinished(true);
+    } else if (currentIndex >= exerciseQueue.length - 1 && !correct) {
+      // Wrong on last exercise — a review was added, so move to it
+      setCurrentIndex(prev => prev + 1);
     } else {
       setCurrentIndex(prev => prev + 1);
     }
@@ -65,8 +136,9 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
   };
 
   if (finished) {
-    const percentage = Math.round((correctCount / exercises.length) * 100);
+    const percentage = Math.round((correctCount / totalAttempts) * 100);
     const xpEarned = correctCount * 10 + (comboCount >= 3 ? 15 : 0);
+    const hadReviews = reviewCount > 0;
 
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-4">
@@ -94,8 +166,14 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
             </div>
             <div className="flex justify-between items-center">
               <span className="text-duo-text-dim">맞은 문제</span>
-              <span className="font-bold">{correctCount}/{exercises.length}</span>
+              <span className="font-bold">{correctCount}/{totalAttempts}</span>
             </div>
+            {hadReviews && (
+              <div className="flex justify-between items-center">
+                <span className="text-duo-text-dim">복습 문제</span>
+                <span className="font-bold text-duo-orange">{reviewCount}개 복습 완료</span>
+              </div>
+            )}
             <div className="h-px bg-duo-card-light" />
             <div className="flex justify-between items-center">
               <span className="text-duo-text-dim">획득 XP</span>
@@ -103,7 +181,7 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
             </div>
           </div>
 
-          <Button onClick={() => onComplete(correctCount, exercises.length)} fullWidth size="lg">
+          <Button onClick={() => onComplete(correctCount, originalCount)} fullWidth size="lg">
             계속하기
           </Button>
         </motion.div>
@@ -121,6 +199,9 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
         <div className="flex-1">
           <ProgressBar progress={progress} />
         </div>
+        {reviewCount > 0 && (
+          <span className="text-xs text-duo-orange">복습 {reviewCount}</span>
+        )}
       </div>
 
       {/* Combo indicator */}
@@ -149,7 +230,7 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
             exit={{ opacity: 0, x: -50 }}
             className="flex-1 flex flex-col"
           >
-            {renderExercise(exercise)}
+            {exercise && renderExercise(exercise)}
           </motion.div>
         </AnimatePresence>
       </div>
