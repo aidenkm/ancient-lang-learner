@@ -24,7 +24,7 @@ export default function Translation({ exercise, onAnswer, language }: Translatio
     <div className="flex flex-col h-full">
       <div className="flex-1 flex flex-col items-center justify-center px-4">
         <p className="text-lg text-duo-text-dim mb-2">{exercise.instruction}</p>
-        <div className={`text-2xl font-bold mb-8 p-6 bg-duo-card rounded-2xl border border-duo-card-light max-w-lg w-full text-center ${textClass}`}>
+        <div className="text-2xl font-bold mb-8 p-6 bg-duo-card rounded-2xl border border-duo-card-light max-w-lg w-full text-center" dir="auto">
           {exercise.question}
         </div>
 

@@ -28,7 +28,7 @@ export default function MultipleChoice({ exercise, onAnswer, language }: Multipl
     <div className="flex flex-col h-full">
       <div className="flex-1 flex flex-col items-center justify-center px-4">
         <p className="text-lg text-duo-text-dim mb-4">{exercise.instruction}</p>
-        <h2 className={`text-3xl font-bold mb-8 ${textClass}`}>{exercise.question}</h2>
+        <h2 className="text-3xl font-bold mb-8" dir="auto">{exercise.question}</h2>
 
         <div className="w-full max-w-lg space-y-3">
           {exercise.options?.map((option, i) => {

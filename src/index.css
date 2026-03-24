@@ -53,5 +53,5 @@ body {
   font-family: var(--font-serif);
   font-size: 1.3em;
   direction: rtl;
-  unicode-bidi: bidi-override;
+  unicode-bidi: isolate;
 }

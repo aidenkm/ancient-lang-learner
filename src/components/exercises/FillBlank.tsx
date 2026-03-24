@@ -25,7 +25,7 @@ export default function FillBlank({ exercise, onAnswer, language }: FillBlankPro
     <div className="flex flex-col h-full">
       <div className="flex-1 flex flex-col items-center justify-center px-4">
         <p className="text-lg text-duo-text-dim mb-4">{exercise.instruction}</p>
-        <h2 className={`text-2xl font-bold mb-8 text-center ${textClass}`}>{exercise.question}</h2>
+        <h2 className="text-2xl font-bold mb-8 text-center" dir="auto">{exercise.question}</h2>
 
         <div className="w-full max-w-md">
           <input
