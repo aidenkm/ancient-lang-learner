@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Exercise } from '../../types';
-import Button from '../common/Button';
 
 interface TranslationProps {
   exercise: Exercise;
@@ -12,13 +11,17 @@ interface TranslationProps {
 export default function Translation({ exercise, onAnswer, language }: TranslationProps) {
   const [selected, setSelected] = useState<string | null>(null);
   const [answered, setAnswered] = useState(false);
-  const isCorrect = selected === exercise.correctAnswer;
   const textClass = language === 'hebrew' ? 'hebrew-text' : 'greek-text';
 
-  const handleCheck = () => {
-    if (!selected) return;
+  const handleSelect = useCallback((option: string) => {
+    if (answered) return;
+    setSelected(option);
     setAnswered(true);
-  };
+    const correct = option === exercise.correctAnswer;
+    setTimeout(() => onAnswer(correct), 800);
+  }, [answered, exercise.correctAnswer, onAnswer]);
+
+  const isCorrect = selected === exercise.correctAnswer;
 
   return (
     <div className="flex flex-col h-full">
@@ -47,7 +50,7 @@ export default function Translation({ exercise, onAnswer, language }: Translatio
               <motion.button
                 key={i}
                 whileTap={!answered ? { scale: 0.98 } : {}}
-                onClick={() => !answered && setSelected(option)}
+                onClick={() => handleSelect(option)}
                 className={`w-full p-4 rounded-xl border-2 ${borderColor} ${bgColor} text-left transition-all cursor-pointer
                   ${!answered ? 'hover:border-duo-blue/50' : ''}`}
               >
@@ -58,9 +61,9 @@ export default function Translation({ exercise, onAnswer, language }: Translatio
         </div>
       </div>
 
-      <div className={`p-4 border-t border-duo-card-light ${answered ? (isCorrect ? 'bg-duo-green/10' : 'bg-duo-red/10') : ''}`}>
-        {answered && (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-3">
+      {answered && (
+        <div className={`p-4 border-t border-duo-card-light ${isCorrect ? 'bg-duo-green/10' : 'bg-duo-red/10'}`}>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             {isCorrect ? (
               <p className="text-duo-green font-bold">정답입니다! 🎉</p>
             ) : (
@@ -71,16 +74,8 @@ export default function Translation({ exercise, onAnswer, language }: Translatio
               </div>
             )}
           </motion.div>
-        )}
-        <Button
-          onClick={answered ? () => onAnswer(isCorrect) : handleCheck}
-          disabled={!selected}
-          variant={answered ? (isCorrect ? 'primary' : 'danger') : 'primary'}
-          fullWidth
-        >
-          {answered ? '계속하기' : '확인'}
-        </Button>
-      </div>
+        </div>
+      )}
     </div>
   );
 }

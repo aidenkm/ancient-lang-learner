@@ -165,7 +165,7 @@ export function generateFormId(
     type: 'multipleChoice',
     question,
     instruction: '올바른 문법 형태를 고르세요.',
-    options,
+    options: seededShuffle(options, id),
     correctAnswer,
     hint,
   };

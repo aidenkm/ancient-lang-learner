@@ -30,8 +30,11 @@ export default function WordArrange({ exercise, onAnswer, language }: WordArrang
   };
 
   const handleCheck = () => {
-    if (selected.length !== words.length) return;
+    if (selected.length !== words.length || answered) return;
     setAnswered(true);
+    const selectedWords_ = selected.map(i => words[i]);
+    const correct = JSON.stringify(selectedWords_) === JSON.stringify(correctOrder);
+    setTimeout(() => onAnswer(correct), 800);
   };
 
   // For Hebrew: display answer in RTL direction
@@ -105,14 +108,16 @@ export default function WordArrange({ exercise, onAnswer, language }: WordArrang
             )}
           </motion.div>
         )}
-        <Button
-          onClick={answered ? () => onAnswer(isCorrect) : handleCheck}
-          disabled={selected.length !== words.length}
-          variant={answered ? (isCorrect ? 'primary' : 'danger') : 'primary'}
-          fullWidth
-        >
-          {answered ? '계속하기' : '확인'}
-        </Button>
+        {!answered && (
+          <Button
+            onClick={handleCheck}
+            disabled={selected.length !== words.length}
+            variant="primary"
+            fullWidth
+          >
+            확인
+          </Button>
+        )}
       </div>
     </div>
   );

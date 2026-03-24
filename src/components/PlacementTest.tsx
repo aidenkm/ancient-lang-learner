@@ -26,41 +26,47 @@ export default function PlacementTest({ language, onComplete, onSkip }: Placemen
   const isCorrect = selected === question?.correctAnswer;
   const progress = ((currentIndex + 1) / questions.length) * 100;
 
-  const handleCheck = () => {
-    if (!selected) return;
+  const handleSelect = (option: string) => {
+    if (answered) return;
+    setSelected(option);
     setAnswered(true);
-    if (isCorrect) {
-      setScore(prev => prev + 1);
+    const correct = option === question?.correctAnswer;
+
+    let newScore = score;
+    let newConsecutiveWrong = consecutiveWrong;
+    if (correct) {
+      newScore = score + 1;
+      newConsecutiveWrong = 0;
+      setScore(newScore);
       setConsecutiveWrong(0);
     } else {
-      setConsecutiveWrong(prev => prev + 1);
+      newConsecutiveWrong = consecutiveWrong + 1;
+      setConsecutiveWrong(newConsecutiveWrong);
     }
-  };
 
-  const handleContinue = () => {
-    // If 3 consecutive wrong in a stage or last question
-    const currentStage = question.stage;
-    if (consecutiveWrong >= 3 || currentIndex >= questions.length - 1) {
-      let startStage = 1;
-      if (consecutiveWrong >= 3) {
-        startStage = Math.max(1, currentStage - 1);
-      } else {
-        // Finished all questions
-        const percentage = score / questions.length;
-        if (percentage >= 0.9) startStage = 5;
-        else if (percentage >= 0.7) startStage = 4;
-        else if (percentage >= 0.5) startStage = 3;
-        else if (percentage >= 0.3) startStage = 2;
-        else startStage = 1;
+    setTimeout(() => {
+      const currentStage = question.stage;
+      if (newConsecutiveWrong >= 3 || currentIndex >= questions.length - 1) {
+        let startStage = 1;
+        if (newConsecutiveWrong >= 3) {
+          startStage = Math.max(1, currentStage - 1);
+        } else {
+          const percentage = newScore / questions.length;
+          if (percentage >= 0.9) startStage = 5;
+          else if (percentage >= 0.7) startStage = 4;
+          else if (percentage >= 0.5) startStage = 3;
+          else if (percentage >= 0.3) startStage = 2;
+          else startStage = 1;
+        }
+        setFinalStage(startStage);
+        setFinished(true);
+        return;
       }
-      setFinalStage(startStage);
-      setFinished(true);
-      return;
-    }
 
-    setCurrentIndex(prev => prev + 1);
-    setSelected(null);
-    setAnswered(false);
+      setCurrentIndex(prev => prev + 1);
+      setSelected(null);
+      setAnswered(false);
+    }, 800);
   };
 
   if (finished) {
@@ -149,7 +155,7 @@ export default function PlacementTest({ language, onComplete, onSkip }: Placemen
                   <motion.button
                     key={i}
                     whileTap={!answered ? { scale: 0.98 } : {}}
-                    onClick={() => !answered && setSelected(option)}
+                    onClick={() => handleSelect(option)}
                     className={`w-full p-4 rounded-xl border-2 ${borderColor} ${bgColor} text-left transition-all cursor-pointer
                       ${!answered ? 'hover:border-duo-blue/50' : ''}`}
                   >
@@ -170,14 +176,6 @@ export default function PlacementTest({ language, onComplete, onSkip }: Placemen
                 {isCorrect ? '정답! 🎉' : `틀렸습니다. 정답: ${question.correctAnswer}`}
               </motion.p>
             )}
-            <Button
-              onClick={answered ? handleContinue : handleCheck}
-              disabled={!selected}
-              variant={answered ? (isCorrect ? 'primary' : 'danger') : 'primary'}
-              fullWidth
-            >
-              {answered ? '다음' : '확인'}
-            </Button>
           </div>
         </motion.div>
       </AnimatePresence>

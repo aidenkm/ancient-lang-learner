@@ -17,8 +17,10 @@ export default function FillBlank({ exercise, onAnswer, language }: FillBlankPro
   const textClass = language === 'hebrew' ? 'hebrew-text' : 'greek-text';
 
   const handleCheck = () => {
-    if (!input.trim()) return;
+    if (!input.trim() || answered) return;
     setAnswered(true);
+    const correct = input.trim() === correctAnswer.trim();
+    setTimeout(() => onAnswer(correct), 800);
   };
 
   return (
@@ -43,9 +45,9 @@ export default function FillBlank({ exercise, onAnswer, language }: FillBlankPro
         </div>
       </div>
 
-      <div className={`p-4 border-t border-duo-card-light ${answered ? (isCorrect ? 'bg-duo-green/10' : 'bg-duo-red/10') : ''}`}>
-        {answered && (
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-3">
+      {answered && (
+        <div className={`p-4 border-t border-duo-card-light ${isCorrect ? 'bg-duo-green/10' : 'bg-duo-red/10'}`}>
+          <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             {isCorrect ? (
               <p className="text-duo-green font-bold">정답입니다! 🎉</p>
             ) : (
@@ -56,16 +58,20 @@ export default function FillBlank({ exercise, onAnswer, language }: FillBlankPro
               </div>
             )}
           </motion.div>
-        )}
-        <Button
-          onClick={answered ? () => onAnswer(isCorrect) : handleCheck}
-          disabled={!input.trim()}
-          variant={answered ? (isCorrect ? 'primary' : 'danger') : 'primary'}
-          fullWidth
-        >
-          {answered ? '계속하기' : '확인'}
-        </Button>
-      </div>
+        </div>
+      )}
+      {!answered && (
+        <div className="p-4 border-t border-duo-card-light">
+          <Button
+            onClick={handleCheck}
+            disabled={!input.trim()}
+            variant="primary"
+            fullWidth
+          >
+            확인
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
