@@ -6,7 +6,6 @@ import MultipleChoice from './exercises/MultipleChoice';
 import Matching from './exercises/Matching';
 import FillBlank from './exercises/FillBlank';
 import Translation from './exercises/Translation';
-import WordArrange from './exercises/WordArrange';
 import Button from './common/Button';
 
 interface LessonPlayerProps {
@@ -51,17 +50,6 @@ function createReviewExercise(original: Exercise, attempt: number): Exercise {
       id: reviewId,
       instruction: `복습: ${original.instruction}`,
       options: shuffled,
-    };
-  }
-
-  // For wordArrange: same exercise, different shuffle
-  if (original.type === 'wordArrange' && original.words) {
-    const shuffled = [...original.words].sort(() => Math.random() - 0.5);
-    return {
-      ...original,
-      id: reviewId,
-      instruction: `복습: ${original.instruction}`,
-      words: shuffled,
     };
   }
 
@@ -128,8 +116,6 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
         return <FillBlank key={key} exercise={ex} onAnswer={handleAnswer} language={language} />;
       case 'translation':
         return <Translation key={key} exercise={ex} onAnswer={handleAnswer} language={language} />;
-      case 'wordArrange':
-        return <WordArrange key={key} exercise={ex} onAnswer={handleAnswer} language={language} />;
       default:
         return <MultipleChoice key={key} exercise={ex} onAnswer={handleAnswer} language={language} />;
     }

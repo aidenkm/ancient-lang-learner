@@ -11,7 +11,7 @@ export function useGameState(userId?: string | null) {
   useEffect(() => {
     if (!isSupabaseConfigured() || !userId) return;
     supabase
-      .from('user_progress')
+      .from('greekheb_progress')
       .select('game_state')
       .eq('user_id', userId)
       .single()
@@ -28,7 +28,7 @@ export function useGameState(userId?: string | null) {
     if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
     saveTimeoutRef.current = setTimeout(() => {
       supabase
-        .from('user_progress')
+        .from('greekheb_progress')
         .upsert({ user_id: userId, game_state: state, updated_at: new Date().toISOString() })
         .then(() => {});
     }, 1000); // debounce 1s

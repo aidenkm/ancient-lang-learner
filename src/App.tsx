@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Language, Lesson } from './types';
 import { useGameState } from './hooks/useGameState';
 import { useAuth } from './hooks/useAuth';
+import { useAdmin } from './hooks/useAdmin';
 import { isSupabaseConfigured } from './lib/supabase';
 import { greekStages } from './data/greek/index';
 import { hebrewStages } from './data/hebrew/index';
@@ -11,19 +12,35 @@ import LanguageSelect from './components/LanguageSelect';
 import PlacementTest from './components/PlacementTest';
 import LessonMap from './components/LessonMap';
 import LessonPlayer from './components/LessonPlayer';
+import AdminDashboard from './components/AdminDashboard';
 
-// Admin email — gets all lessons unlocked
-const ADMIN_EMAILS = ['aidenkm0@gmail.com'];
-
-type Screen = 'auth' | 'languageSelect' | 'placementChoice' | 'placementTest' | 'lessonMap' | 'lesson';
+type Screen = 'auth' | 'languageSelect' | 'placementChoice' | 'placementTest' | 'lessonMap' | 'lesson' | 'admin';
 
 function App() {
   const { user, loading: authLoading, signIn, signUp, signOut, configured: authConfigured } = useAuth();
-  const isAdmin = user?.email ? ADMIN_EMAILS.includes(user.email) : false;
+  const { isAdmin } = useAdmin(user?.id);
   const { gameState, selectLanguage, getProgress, addXp, completeLesson, updateStreak, completePlacement, updateProgress } = useGameState(user?.id);
   const [screen, setScreen] = useState<Screen>(authConfigured ? 'auth' : 'languageSelect');
   const [currentLesson, setCurrentLesson] = useState<Lesson | null>(null);
   const [guestMode, setGuestMode] = useState(false);
+
+  // Handle deep links from WMC (?lang=greek&passage=John 1:1)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const deepLang = params.get('lang') as Language | null;
+    if (deepLang && (deepLang === 'greek' || deepLang === 'hebrew')) {
+      selectLanguage(deepLang);
+      // Skip placement for deep link users — go straight to lesson map
+      const progress = gameState[deepLang];
+      if (!progress.placementCompleted) {
+        completePlacement(0, 1);
+      }
+      setGuestMode(true);
+      setScreen('lessonMap');
+      // Clean URL
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+  }, []);
 
   // Determine initial screen after auth loads
   useEffect(() => {
@@ -159,9 +176,16 @@ function App() {
                   {user ? `${user.email}${isAdmin ? ' (Admin)' : ''}` : '게스트 모드'}
                 </span>
                 {user ? (
-                  <button onClick={async () => { await signOut(); setGuestMode(false); setScreen('auth'); }} className="text-duo-text-dim hover:text-duo-text cursor-pointer">
-                    로그아웃
-                  </button>
+                  <div className="flex items-center gap-3">
+                    {isAdmin && (
+                      <button onClick={() => setScreen('admin')} className="text-duo-orange hover:text-duo-yellow cursor-pointer font-medium">
+                        관리자
+                      </button>
+                    )}
+                    <button onClick={async () => { await signOut(); setGuestMode(false); setScreen('auth'); }} className="text-duo-text-dim hover:text-duo-text cursor-pointer">
+                      로그아웃
+                    </button>
+                  </div>
                 ) : authConfigured ? (
                   <button onClick={() => { setGuestMode(false); setScreen('auth'); }} className="text-duo-text-dim hover:text-duo-text cursor-pointer">
                     로그인
@@ -243,6 +267,10 @@ function App() {
             onSelectLesson={handleSelectLesson}
             onBack={handleBack}
           />
+        )}
+
+        {screen === 'admin' && isAdmin && (
+          <AdminDashboard onBack={() => setScreen('languageSelect')} />
         )}
 
         {screen === 'lesson' && gameState.selectedLanguage && currentLesson && (

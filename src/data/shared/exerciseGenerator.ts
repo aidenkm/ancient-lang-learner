@@ -130,27 +130,6 @@ export function generatePhraseTranslation(
 }
 
 /**
- * Takes 3-5 words, asks to arrange in correct order.
- */
-export function generateWordArrange(
-  id: string,
-  words: string[],
-  correctOrder: string[],
-  instruction: string
-): Exercise {
-  const shuffled = seededShuffle(words, id);
-
-  return {
-    id,
-    type: 'wordArrange',
-    question: instruction,
-    instruction,
-    words: shuffled,
-    correctAnswer: correctOrder,
-  };
-}
-
-/**
  * Takes a word, asks to identify its grammatical form (case, tense, etc).
  */
 export function generateFormId(

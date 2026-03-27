@@ -45,14 +45,13 @@ export interface UnitMeta {
   description: string;
   icon: string;
   stage: number;
-  lessonType: 'vocab' | 'grammar' | 'parsing' | 'text';
-  // 생성기가 참조할 데이터 키
-  dataKey?: string;      // 텍스트 유닛이면 텍스트 파일 키
-  vocabRange?: [number, number]; // 어휘 유닛이면 시작-끝 인덱스
-  verbCategory?: string; // 파싱 유닛이면 동사 카테고리
+  // 복합 데이터 참조 — 유닛은 여러 소스를 동시에 가질 수 있음
+  dataKey?: string;      // 텍스트 데이터 키
+  vocabRange?: [number, number]; // 어휘 인덱스 범위
+  verbCategory?: string; // 동사 파싱 카테고리
 }
 
-export type ExerciseType = 'multipleChoice' | 'matching' | 'fillBlank' | 'translation' | 'wordArrange';
+export type ExerciseType = 'multipleChoice' | 'matching' | 'fillBlank' | 'translation';
 
 export interface Exercise {
   id: string;
@@ -63,7 +62,6 @@ export interface Exercise {
   correctAnswer: string | string[];
   hint?: string;
   pairs?: { left: string; right: string }[];
-  words?: string[];
 }
 
 export interface Lesson {
