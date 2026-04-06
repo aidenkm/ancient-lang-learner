@@ -63,6 +63,9 @@ export const hebrewStageMeta = [
       { id: 'h5-u9', title: '이사야 53장', description: '고난받는 종 (53:1-12)', icon: '📖', stage: 5, dataKey: 'isaiah53' },
       { id: 'h5-u10', title: '룻기 1장', description: '룻의 고백 (1:1-22)', icon: '🌾', stage: 5, dataKey: 'ruth1' },
       { id: 'h5-u11', title: '전도서 1장', description: '헛되고 헛되도다 (1:1-11)', icon: '📚', stage: 5, dataKey: 'eccl1' },
+      { id: 'h5-u12', title: '출애굽기 20장', description: '십계명 (20:1-17)', icon: '⛰️', stage: 5, dataKey: 'exodus20' },
+      { id: 'h5-u13', title: '요나 1-2장', description: '요나의 도주와 큰 물고기 (1:1-2:3)', icon: '🐋', stage: 5, dataKey: 'jonah' },
+      { id: 'h5-u14', title: '다니엘 1장', description: '다니엘과 세 친구 (1:1-21)', icon: '🦁', stage: 5, dataKey: 'daniel1' },
     ] satisfies UnitMeta[],
   },
 ];

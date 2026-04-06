@@ -86,6 +86,10 @@ export const greekStageMeta = [
       // 갈라디아서 & 고린도전서
       { id: 'g5-u18', title: '갈라디아서 2장', description: '바울의 복음 변호 (2:15-21)', icon: '📨', stage: 5, dataKey: 'galatians' },
       { id: 'g5-u19', title: '고린도전서 13장', description: '사랑의 장 (13:1-13)', icon: '❤️', stage: 5, dataKey: 'corinthians' },
+      // 마태복음 & 공동서신
+      { id: 'g5-u22', title: '마태복음 5장', description: '산상수훈: 팔복과 빛과 소금 (5:1-16)', icon: '⛰️', stage: 5, dataKey: 'matthew5' },
+      { id: 'g5-u23', title: '에베소서 1장', description: '그리스도 안의 영적 축복 (1:1-14)', icon: '📨', stage: 5, dataKey: 'ephesians' },
+      { id: 'g5-u24', title: '야고보서 1장', description: '시험과 인내, 지혜 (1:1-18)', icon: '💎', stage: 5, dataKey: 'james' },
       // 고전 철학
       { id: 'g5-u20', title: '플라톤', description: '변론, 파이돈, 국가, 향연, 티마이오스', icon: '🏺', stage: 5, dataKey: 'plato' },
       { id: 'g5-u21', title: '아리스토텔레스', description: '영혼론, 정치학, 니코마코스 윤리학, 형이상학', icon: '📐', stage: 5, dataKey: 'aristotle' },

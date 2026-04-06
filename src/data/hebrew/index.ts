@@ -13,6 +13,9 @@ import { deut6Texts } from './db/texts/deut6';
 import { isaiah53Texts } from './db/texts/isaiah53';
 import { ruth1Texts } from './db/texts/ruth1';
 import { eccl1Texts } from './db/texts/eccl1';
+import { exodus20Texts } from './db/texts/exodus20';
+import { jonahTexts } from './db/texts/jonah';
+import { daniel1Texts } from './db/texts/daniel1';
 
 // Text data registry — maps dataKey to verse arrays
 const textRegistry: Record<string, typeof genesisTexts> = {
@@ -27,6 +30,9 @@ const textRegistry: Record<string, typeof genesisTexts> = {
   isaiah53: isaiah53Texts,               // Isaiah 53:1-12
   ruth1: ruth1Texts,                     // Ruth 1:1-18
   eccl1: eccl1Texts,                     // Eccl 1:1-11
+  exodus20: exodus20Texts,               // Exod 20:1-17
+  jonah: jonahTexts,                     // Jonah 1:1-2:3
+  daniel1: daniel1Texts,                 // Dan 1:1-21
 };
 
 // Build all stages dynamically from metadata + DB data

@@ -24,6 +24,9 @@ import { romans1Texts } from './db/texts/romans1';
 import { genesisLxx2Texts } from './db/texts/genesis-lxx-2';
 import { ruthLxxTexts } from './db/texts/ruth-lxx';
 import { jonahLxxTexts } from './db/texts/jonah-lxx';
+import { matthew5Texts } from './db/texts/matthew5';
+import { ephesiansTexts } from './db/texts/ephesians';
+import { jamesTexts } from './db/texts/james';
 
 const textRegistry: Record<string, typeof johnTexts> = {
   john: johnTexts,
@@ -48,6 +51,9 @@ const textRegistry: Record<string, typeof johnTexts> = {
   hebrews: hebrewsTexts,
   galatians: galatiansTexts,
   corinthians: corinthiansTexts,
+  matthew5: matthew5Texts,
+  ephesians: ephesiansTexts,
+  james: jamesTexts,
 };
 
 export const greekStages: StageInfo[] = greekStageMeta.map((stageMeta) => {
