@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Language, Lesson, Exercise } from './types';
+import { Language, Lesson, Exercise, Badge } from './types';
 import { useGameState } from './hooks/useGameState';
 import { useAuth } from './hooks/useAuth';
 import { useAdmin } from './hooks/useAdmin';
@@ -8,12 +8,14 @@ import { useReviewDeck } from './hooks/useReviewDeck';
 import { isSupabaseConfigured } from './lib/supabase';
 import { greekStages } from './data/greek/index';
 import { hebrewStages } from './data/hebrew/index';
+import { checkBadges, getBadgeById } from './data/badges';
 import AuthScreen from './components/AuthScreen';
 import LanguageSelect from './components/LanguageSelect';
 import PlacementTest from './components/PlacementTest';
 import LessonMap from './components/LessonMap';
 import LessonPlayer from './components/LessonPlayer';
 import AdminDashboard from './components/AdminDashboard';
+import BadgeToast from './components/gamification/BadgeToast';
 
 type Screen = 'auth' | 'languageSelect' | 'placementChoice' | 'placementTest' | 'lessonMap' | 'lesson' | 'admin';
 
@@ -25,6 +27,35 @@ function App() {
   const [screen, setScreen] = useState<Screen>(authConfigured ? 'auth' : 'languageSelect');
   const [currentLesson, setCurrentLesson] = useState<Lesson | null>(null);
   const [guestMode, setGuestMode] = useState(false);
+  const [badgeToast, setBadgeToast] = useState<Badge | null>(null);
+  const [badgeQueue, setBadgeQueue] = useState<Badge[]>([]);
+
+  // Check and award new badges
+  const checkAndAwardBadges = useCallback(() => {
+    const newBadgeIds = checkBadges(gameState);
+    if (newBadgeIds.length === 0) return;
+
+    // Save earned badges to both language progresses
+    const lang = gameState.selectedLanguage;
+    if (lang) {
+      updateProgress({
+        earnedBadges: [...new Set([...gameState[lang].earnedBadges, ...newBadgeIds])],
+      });
+    }
+
+    // Queue toasts
+    const newBadges = newBadgeIds.map(id => getBadgeById(id)!).filter(Boolean);
+    setBadgeQueue(prev => [...prev, ...newBadges]);
+  }, [gameState, updateProgress]);
+
+  // Show badge toasts one at a time
+  useEffect(() => {
+    if (!badgeToast && badgeQueue.length > 0) {
+      setBadgeToast(badgeQueue[0]);
+      setBadgeQueue(prev => prev.slice(1));
+      setTimeout(() => setBadgeToast(null), 4000);
+    }
+  }, [badgeToast, badgeQueue]);
 
   // Handle deep links from WMC (?lang=greek&passage=John 1:1)
   useEffect(() => {
@@ -83,6 +114,7 @@ function App() {
     completePlacement(score, startStage);
     updateStreak();
     setScreen('lessonMap');
+    setTimeout(checkAndAwardBadges, 300);
   };
 
   const handleSelectLesson = (lessonId: string) => {
@@ -142,6 +174,7 @@ function App() {
 
     setCurrentLesson(null);
     setScreen('lessonMap');
+    setTimeout(checkAndAwardBadges, 300);
   };
 
   const handleStartReview = () => {
@@ -187,6 +220,7 @@ function App() {
     updateStreak();
     setCurrentLesson(null);
     setScreen('lessonMap');
+    setTimeout(checkAndAwardBadges, 300);
   };
 
   const handleBack = () => {
@@ -337,6 +371,8 @@ function App() {
         {screen === 'admin' && isAdmin && (
           <AdminDashboard onBack={() => setScreen('languageSelect')} />
         )}
+
+        <BadgeToast badge={badgeToast} onClose={() => setBadgeToast(null)} />
 
         {screen === 'lesson' && gameState.selectedLanguage && currentLesson && (
           <LessonPlayer

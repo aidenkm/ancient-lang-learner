@@ -96,6 +96,16 @@ export interface PlacementQuestion {
   type: 'letterIdentify' | 'vocabulary' | 'grammar' | 'translation' | 'reading';
 }
 
+// ===== Badges / Achievements =====
+
+export interface Badge {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  category: 'progress' | 'streak' | 'mastery' | 'special';
+}
+
 // ===== Spaced Repetition (SRS) =====
 
 export interface ReviewCard {
@@ -121,6 +131,7 @@ export interface UserProgress {
   placementCompleted: boolean;
   lessonCrowns: Record<string, number>;
   reviewDeck: ReviewCard[];
+  earnedBadges: string[];  // badge IDs
 }
 
 export interface GameState {
@@ -143,6 +154,7 @@ export const defaultProgress = (language: Language): UserProgress => ({
   placementCompleted: false,
   lessonCrowns: {},
   reviewDeck: [],
+  earnedBadges: [],
 });
 
 export const defaultGameState: GameState = {

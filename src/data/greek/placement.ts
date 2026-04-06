@@ -210,4 +210,134 @@ export const greekPlacementQuestions: PlacementQuestion[] = [
     options: ['부정과거 능동 직설법 3인칭 단수 (ποιέω)', '현재 능동 직설법 3인칭 단수 (ποιέω)', '미완료 능동 직설법 3인칭 단수 (ποιέω)', '완료 능동 직설법 3인칭 단수 (ποιέω)'],
     correctAnswer: '부정과거 능동 직설법 3인칭 단수 (ποιέω)',
   },
+
+  // Stage 1 추가 (3문항)
+  {
+    id: 'gp-1-6',
+    stage: 1,
+    type: 'letterIdentify',
+    question: '모음 문자가 아닌 것은?',
+    options: ['κ', 'α', 'ε', 'ω'],
+    correctAnswer: 'κ',
+  },
+  {
+    id: 'gp-1-7',
+    stage: 1,
+    type: 'letterIdentify',
+    question: '"ps" 소리를 나타내는 문자는?',
+    options: ['ψ', 'φ', 'π', 'ξ'],
+    correctAnswer: 'ψ',
+  },
+  {
+    id: 'gp-1-8',
+    stage: 1,
+    type: 'letterIdentify',
+    question: '기식 부호(ʽ)가 있는 단어의 발음 특징은?',
+    options: ['h 소리가 추가됨', '장음이 됨', '악센트가 바뀜', '소리가 없어짐'],
+    correctAnswer: 'h 소리가 추가됨',
+  },
+
+  // Stage 2 추가 (3문항)
+  {
+    id: 'gp-2-6',
+    stage: 2,
+    type: 'vocabulary',
+    question: 'ἄνθρωπος의 뜻은?',
+    options: ['사람', '천사', '양', '빛'],
+    correctAnswer: '사람',
+  },
+  {
+    id: 'gp-2-7',
+    stage: 2,
+    type: 'grammar',
+    question: 'λύει의 인칭과 수는?',
+    options: ['3인칭 단수', '1인칭 단수', '2인칭 단수', '3인칭 복수'],
+    correctAnswer: '3인칭 단수',
+  },
+  {
+    id: 'gp-2-8',
+    stage: 2,
+    type: 'grammar',
+    question: '여성 단수 주격 정관사는?',
+    options: ['ἡ', 'ὁ', 'τό', 'αἱ'],
+    correctAnswer: 'ἡ',
+  },
+
+  // Stage 3 추가 (3문항)
+  {
+    id: 'gp-3-6',
+    stage: 3,
+    type: 'grammar',
+    question: '완료 시제(perfect)의 특징은?',
+    options: ['과거 행동의 현재적 결과 지속', '단순 과거 사건', '미래의 확정적 행동', '현재 진행 중인 행동'],
+    correctAnswer: '과거 행동의 현재적 결과 지속',
+  },
+  {
+    id: 'gp-3-7',
+    stage: 3,
+    type: 'grammar',
+    question: 'λέλυκα에서 λε-는 무엇인가?',
+    options: ['완료 시제의 반복(reduplication)', '가음절(augment)', '전치사 접두어', '접속법 표지'],
+    correctAnswer: '완료 시제의 반복(reduplication)',
+  },
+  {
+    id: 'gp-3-8',
+    stage: 3,
+    type: 'translation',
+    question: 'ἐὰν μὴ πιστεύσητε의 뜻은?',
+    options: ['만일 너희가 믿지 않으면', '너희가 믿었으므로', '너희가 믿을 때', '너희가 믿기 전에'],
+    correctAnswer: '만일 너희가 믿지 않으면',
+  },
+
+  // Stage 4 추가 (3문항)
+  {
+    id: 'gp-4-6',
+    stage: 4,
+    type: 'grammar',
+    question: 'ἐλύθη를 파싱하면?',
+    options: ['부정과거 수동 직설법 3인칭 단수', '현재 수동 직설법 3인칭 단수', '미완료 수동 직설법 3인칭 단수', '완료 수동 직설법 3인칭 단수'],
+    correctAnswer: '부정과거 수동 직설법 3인칭 단수',
+  },
+  {
+    id: 'gp-4-7',
+    stage: 4,
+    type: 'grammar',
+    question: 'εἰ + 직설법 과거 시제가 쓰인 조건문은?',
+    options: ['제2류 조건문 (반사실적)', '제1류 조건문 (사실적)', '제3류 조건문 (가능적)', '제4류 조건문 (불가능적)'],
+    correctAnswer: '제2류 조건문 (반사실적)',
+  },
+  {
+    id: 'gp-4-8',
+    stage: 4,
+    type: 'grammar',
+    question: 'λυσάμενος를 파싱하면?',
+    options: ['부정과거 중간 분사 주격 남성 단수', '부정과거 능동 분사 주격 남성 단수', '현재 중간 분사 주격 남성 단수', '완료 중간 분사 주격 남성 단수'],
+    correctAnswer: '부정과거 중간 분사 주격 남성 단수',
+  },
+
+  // Stage 5 추가 (3문항)
+  {
+    id: 'gp-5-6',
+    stage: 5,
+    type: 'reading',
+    question: '요한복음 1:1의 Ἐν ἀρχῇ ἦν ὁ λόγος에서 ἦν을 파싱하면?',
+    options: ['미완료 능동 직설법 3인칭 단수 (εἰμί)', '부정과거 능동 직설법 3인칭 단수 (εἰμί)', '현재 능동 직설법 3인칭 단수 (εἰμί)', '완료 능동 직설법 3인칭 단수 (εἰμί)'],
+    correctAnswer: '미완료 능동 직설법 3인칭 단수 (εἰμί)',
+  },
+  {
+    id: 'gp-5-7',
+    stage: 5,
+    type: 'reading',
+    question: '로마서 3:23의 πάντες γὰρ ἥμαρτον에서 ἥμαρτον의 시제와 의미는?',
+    options: ['부정과거 — 모든 사람이 죄를 지었다', '현재 — 모든 사람이 죄를 짓는다', '완료 — 모든 사람이 죄를 지어왔다', '미완료 — 모든 사람이 죄를 짓고 있었다'],
+    correctAnswer: '부정과거 — 모든 사람이 죄를 지었다',
+  },
+  {
+    id: 'gp-5-8',
+    stage: 5,
+    type: 'reading',
+    question: '빌립보서 2:7의 ἑαυτὸν ἐκένωσεν에서 ἐκένωσεν의 의미는?',
+    options: ['자기를 비우셨다 (부정과거 능동 3인칭 단수, κενόω)', '자기를 채우셨다 (부정과거 능동 3인칭 단수)', '자기를 높이셨다 (부정과거 능동 3인칭 단수)', '자기를 드러내셨다 (부정과거 능동 3인칭 단수)'],
+    correctAnswer: '자기를 비우셨다 (부정과거 능동 3인칭 단수, κενόω)',
+  },
 ];

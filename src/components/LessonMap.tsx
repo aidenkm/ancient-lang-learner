@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Language, StageInfo, UserProgress } from '../types';
 import { greekStages } from '../data/greek/index';
 import { hebrewStages } from '../data/hebrew/index';
+import { ALL_BADGES } from '../data/badges';
 import XPBar from './gamification/XPBar';
 import StreakCounter from './gamification/StreakCounter';
 import Hearts from './gamification/Hearts';
+import BadgePanel from './gamification/BadgePanel';
 
 interface LessonMapProps {
   language: Language;
@@ -16,9 +19,11 @@ interface LessonMapProps {
 }
 
 export default function LessonMap({ language, progress, onSelectLesson, onBack, dueReviewCount, onStartReview }: LessonMapProps) {
+  const [showBadges, setShowBadges] = useState(false);
   const stages = language === 'greek' ? greekStages : hebrewStages;
   const langName = language === 'greek' ? '고대 그리스어' : '성서 히브리어';
   const langIcon = language === 'greek' ? '🏛️' : '📜';
+  const earnedBadges = progress.earnedBadges || [];
 
   return (
     <div className="min-h-screen">
@@ -30,6 +35,15 @@ export default function LessonMap({ language, progress, onSelectLesson, onBack, 
               ← 언어 선택
             </button>
             <div className="flex items-center gap-2">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setShowBadges(true)}
+                className="flex items-center gap-1 bg-duo-purple/20 px-3 py-1 rounded-full cursor-pointer"
+              >
+                <span className="text-lg">🏅</span>
+                <span className="text-duo-purple font-bold text-sm">{earnedBadges.length}</span>
+              </motion.button>
               <Hearts />
               <StreakCounter streak={progress.streak} />
             </div>
@@ -159,6 +173,12 @@ export default function LessonMap({ language, progress, onSelectLesson, onBack, 
           </div>
         ))}
       </div>
+
+      <BadgePanel
+        earnedBadgeIds={earnedBadges}
+        isOpen={showBadges}
+        onClose={() => setShowBadges(false)}
+      />
     </div>
   );
 }

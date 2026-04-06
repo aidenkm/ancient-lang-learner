@@ -1,0 +1,18 @@
+{
+  "name": "고대어 학습 - GreekHeb",
+  "short_name": "GreekHeb",
+  "description": "고대 그리스어 & 성서 히브리어 듀오링고 스타일 학습 앱",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#131f24",
+  "theme_color": "#58cc02",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
