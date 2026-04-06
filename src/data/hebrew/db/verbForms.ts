@@ -259,4 +259,185 @@ export const hebrewVerbForms: VerbForm[] = [
   { form: 'שְׁמַע', root: 'שׁמע', parsing: '칼 명령법 2남단 (신 6:4)', gloss: '들어라!', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 단수', stage: 5 },
   { form: 'וְאָהַבְתָּ', root: 'אהב', parsing: '와카탈 칼 2남단 (신 6:5)', gloss: '너는 사랑하라', tense: '완료', voice: '칼', mood: '직설법', person: '2', number: '남성 단수', stage: 5 },
   { form: 'וְשִׁנַּנְתָּם', root: 'שׁנן', parsing: '와카탈 피엘 2남단+3남복접 (신 6:7)', gloss: '부지런히 가르치라', tense: '완료', voice: '피엘', mood: '직설법', person: '2', number: '남성 단수', stage: 5 },
+
+  // ============================================================
+  // ADDITIONAL STAGE 2: More Qal paradigms for common verbs
+  // ============================================================
+
+  // --- Qal Perfect/Imperfect: ידע (알다) ---
+  { form: 'יָדַע', root: 'ידע', parsing: '칼 완료 3인칭 남성 단수', gloss: '그가 알았다', tense: '완료', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 2 },
+  { form: 'יָדְעָה', root: 'ידע', parsing: '칼 완료 3인칭 여성 단수', gloss: '그녀가 알았다', tense: '완료', voice: '칼', mood: '직설법', person: '3', number: '여성 단수', stage: 2 },
+  { form: 'יָדַעְתָּ', root: 'ידע', parsing: '칼 완료 2인칭 남성 단수', gloss: '네가 알았다', tense: '완료', voice: '칼', mood: '직설법', person: '2', number: '남성 단수', stage: 2 },
+  { form: 'יָדַעְתִּי', root: 'ידע', parsing: '칼 완료 1인칭 공성 단수', gloss: '내가 알았다', tense: '완료', voice: '칼', mood: '직설법', person: '1', number: '공성 단수', stage: 2 },
+  { form: 'יֵדַע', root: 'ידע', parsing: '칼 미완료 3인칭 남성 단수', gloss: '그가 알 것이다', tense: '미완료', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 2 },
+  { form: 'תֵּדַע', root: 'ידע', parsing: '칼 미완료 2인칭 남성 단수', gloss: '네가 알 것이다', tense: '미완료', voice: '칼', mood: '직설법', person: '2', number: '남성 단수', stage: 2 },
+  { form: 'אֵדַע', root: 'ידע', parsing: '칼 미완료 1인칭 공성 단수', gloss: '내가 알 것이다', tense: '미완료', voice: '칼', mood: '직설법', person: '1', number: '공성 단수', stage: 2 },
+
+  // --- Qal Perfect/Imperfect: נתן (주다) full paradigm ---
+  { form: 'נָתְנָה', root: 'נתן', parsing: '칼 완료 3인칭 여성 단수', gloss: '그녀가 주었다', tense: '완료', voice: '칼', mood: '직설법', person: '3', number: '여성 단수', stage: 2 },
+  { form: 'נָתַתָּ', root: 'נתן', parsing: '칼 완료 2인칭 남성 단수', gloss: '네가 주었다', tense: '완료', voice: '칼', mood: '직설법', person: '2', number: '남성 단수', stage: 2 },
+  { form: 'נָתַתִּי', root: 'נתן', parsing: '칼 완료 1인칭 공성 단수', gloss: '내가 주었다', tense: '완료', voice: '칼', mood: '직설법', person: '1', number: '공성 단수', stage: 2 },
+  { form: 'נָתְנוּ', root: 'נתן', parsing: '칼 완료 3인칭 공성 복수', gloss: '그들이 주었다', tense: '완료', voice: '칼', mood: '직설법', person: '3', number: '공성 복수', stage: 2 },
+  { form: 'תִּתֵּן', root: 'נתן', parsing: '칼 미완료 2인칭 남성 단수', gloss: '네가 줄 것이다', tense: '미완료', voice: '칼', mood: '직설법', person: '2', number: '남성 단수', stage: 2 },
+  { form: 'אֶתֵּן', root: 'נתן', parsing: '칼 미완료 1인칭 공성 단수', gloss: '내가 줄 것이다', tense: '미완료', voice: '칼', mood: '직설법', person: '1', number: '공성 단수', stage: 2 },
+
+  // ============================================================
+  // ADDITIONAL STAGE 3: Imperatives, Infinitives, Participles, Wayyiqtol
+  // ============================================================
+
+  // --- More Qal Imperatives ---
+  { form: 'קוּם', root: 'קום', parsing: '칼 명령법 2인칭 남성 단수', gloss: '일어나라!', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 단수', stage: 3 },
+  { form: 'קוּמוּ', root: 'קום', parsing: '칼 명령법 2인칭 남성 복수', gloss: '일어나라! (복)', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 복수', stage: 3 },
+  { form: 'שׁוּב', root: 'שׁוב', parsing: '칼 명령법 2인칭 남성 단수', gloss: '돌아가라!', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 단수', stage: 3 },
+  { form: 'שׁוּבוּ', root: 'שׁוב', parsing: '칼 명령법 2인칭 남성 복수', gloss: '돌아가라! (복)', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 복수', stage: 3 },
+  { form: 'תֵּן', root: 'נתן', parsing: '칼 명령법 2인칭 남성 단수', gloss: '주어라!', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 단수', stage: 3 },
+  { form: 'תְּנוּ', root: 'נתן', parsing: '칼 명령법 2인칭 남성 복수', gloss: '주어라! (복)', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 복수', stage: 3 },
+  { form: 'עֲלֵה', root: 'עלה', parsing: '칼 명령법 2인칭 남성 단수', gloss: '올라가라!', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 단수', stage: 3 },
+  { form: 'עֲלוּ', root: 'עלה', parsing: '칼 명령법 2인칭 남성 복수', gloss: '올라가라! (복)', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 복수', stage: 3 },
+  { form: 'רְאֵה', root: 'ראה', parsing: '칼 명령법 2인칭 남성 단수', gloss: '보아라!', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 단수', stage: 3 },
+  { form: 'דַּע', root: 'ידע', parsing: '칼 명령법 2인칭 남성 단수', gloss: '알아라!', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 단수', stage: 3 },
+
+  // --- More Infinitive Constructs ---
+  { form: 'עֲשׂוֹת', root: 'עשׂה', parsing: '칼 부정사 연계형', gloss: '하는 것, 만들기', tense: '부정사', voice: '칼', mood: '부정사', stage: 3 },
+  { form: 'דַּעַת', root: 'ידע', parsing: '칼 부정사 연계형', gloss: '아는 것, 알기', tense: '부정사', voice: '칼', mood: '부정사', stage: 3 },
+  { form: 'אֱכֹל', root: 'אכל', parsing: '칼 부정사 연계형', gloss: '먹는 것, 먹기', tense: '부정사', voice: '칼', mood: '부정사', stage: 3 },
+  { form: 'שׁוּב', root: 'שׁוב', parsing: '칼 부정사 연계형', gloss: '돌아가는 것', tense: '부정사', voice: '칼', mood: '부정사', stage: 3 },
+  { form: 'קוּם', root: 'קום', parsing: '칼 부정사 연계형', gloss: '일어나는 것', tense: '부정사', voice: '칼', mood: '부정사', stage: 3 },
+
+  // --- Infinitive Absolute ---
+  { form: 'כָּתוֹב', root: 'כתב', parsing: '칼 부정사 절대형', gloss: '반드시 쓰다', tense: '부정사 절대형', voice: '칼', mood: '부정사', stage: 3 },
+  { form: 'שָׁמוֹר', root: 'שׁמר', parsing: '칼 부정사 절대형', gloss: '반드시 지키다', tense: '부정사 절대형', voice: '칼', mood: '부정사', stage: 3 },
+  { form: 'שָׁמוֹעַ', root: 'שׁמע', parsing: '칼 부정사 절대형', gloss: '반드시 듣다', tense: '부정사 절대형', voice: '칼', mood: '부정사', stage: 3 },
+  { form: 'הָלוֹךְ', root: 'הלך', parsing: '칼 부정사 절대형', gloss: '계속 가다', tense: '부정사 절대형', voice: '칼', mood: '부정사', stage: 3 },
+  { form: 'מוֹת', root: 'מות', parsing: '칼 부정사 절대형', gloss: '반드시 죽다', tense: '부정사 절대형', voice: '칼', mood: '부정사', stage: 3 },
+  { form: 'אָכוֹל', root: 'אכל', parsing: '칼 부정사 절대형', gloss: '반드시 먹다', tense: '부정사 절대형', voice: '칼', mood: '부정사', stage: 3 },
+
+  // --- More Participles ---
+  { form: 'יֹדֵעַ', root: 'ידע', parsing: '칼 능동 분사 남성 단수', gloss: '아는 자', tense: '분사', voice: '칼', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'אֹכֵל', root: 'אכל', parsing: '칼 능동 분사 남성 단수', gloss: '먹는 자', tense: '분사', voice: '칼', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'נֹתֵן', root: 'נתן', parsing: '칼 능동 분사 남성 단수', gloss: '주는 자', tense: '분사', voice: '칼', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'עֹשֶׂה', root: 'עשׂה', parsing: '칼 능동 분사 남성 단수', gloss: '하는 자, 만드는 자', tense: '분사', voice: '칼', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'שֹׁפֵט', root: 'שׁפט', parsing: '칼 능동 분사 남성 단수', gloss: '재판하는 자 (사사)', tense: '분사', voice: '칼', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'מֹלֵךְ', root: 'מלך', parsing: '칼 능동 분사 남성 단수', gloss: '다스리는 자', tense: '분사', voice: '칼', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+
+  // --- Niphal Participle ---
+  { form: 'נִכְתָּב', root: 'כתב', parsing: '니팔 분사 남성 단수', gloss: '기록된', tense: '분사', voice: '니팔', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'נוֹלָד', root: 'ילד', parsing: '니팔 분사 남성 단수', gloss: '태어난', tense: '분사', voice: '니팔', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'נוֹרָא', root: 'ירא', parsing: '니팔 분사 남성 단수', gloss: '두려운, 경외할', tense: '분사', voice: '니팔', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+
+  // --- Piel Participle ---
+  { form: 'מְדַבֵּר', root: 'דבר', parsing: '피엘 분사 남성 단수', gloss: '말하는 자', tense: '분사', voice: '피엘', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'מְבַקֵּשׁ', root: 'בקשׁ', parsing: '피엘 분사 남성 단수', gloss: '찾는 자', tense: '분사', voice: '피엘', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'מְבָרֵךְ', root: 'ברך', parsing: '피엘 분사 남성 단수', gloss: '축복하는 자', tense: '분사', voice: '피엘', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+
+  // --- Hiphil Participle ---
+  { form: 'מַכֶּה', root: 'נכה', parsing: '히필 분사 남성 단수', gloss: '치는 자', tense: '분사', voice: '히필', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'מַגִּיד', root: 'נגד', parsing: '히필 분사 남성 단수', gloss: '알리는 자', tense: '분사', voice: '히필', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'מוֹשִׁיעַ', root: 'ישׁע', parsing: '히필 분사 남성 단수', gloss: '구원하는 자', tense: '분사', voice: '히필', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+  { form: 'מֵבִיא', root: 'בוא', parsing: '히필 분사 남성 단수', gloss: '데려오는 자', tense: '분사', voice: '히필', mood: '분사', person: undefined, number: '남성 단수', stage: 3 },
+
+  // --- More Wayyiqtol forms ---
+  { form: 'וַיִּתֵּן', root: 'נתן', parsing: '와이욕톨 칼 3인칭 남성 단수', gloss: '그가 주었다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 3 },
+  { form: 'וַיִּקַּח', root: 'לקח', parsing: '와이욕톨 칼 3인칭 남성 단수', gloss: '그가 취했다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 3 },
+  { form: 'וַיָּמָת', root: 'מות', parsing: '와이욕톨 칼 3인칭 남성 단수', gloss: '그가 죽었다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 3 },
+  { form: 'וַיִּכְתֹּב', root: 'כתב', parsing: '와이욕톨 칼 3인칭 남성 단수', gloss: '그가 썼다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 3 },
+  { form: 'וַיֵּשֶׁב', root: 'ישׁב', parsing: '와이욕톨 칼 3인칭 남성 단수', gloss: '그가 앉았다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 3 },
+  { form: 'וַיָּקָם', root: 'קום', parsing: '와이욕톨 칼 3인칭 남성 단수', gloss: '그가 일어났다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 3 },
+  { form: 'וַיָּשָׁב', root: 'שׁוב', parsing: '와이욕톨 칼 3인칭 남성 단수', gloss: '그가 돌아갔다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 3 },
+  { form: 'וַיַּעַל', root: 'עלה', parsing: '와이욕톨 칼 3인칭 남성 단수', gloss: '그가 올라갔다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 3 },
+  { form: 'וַיֵּצֵא', root: 'יצא', parsing: '와이욕톨 칼 3인칭 남성 단수', gloss: '그가 나갔다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 3 },
+  { form: 'וַיִּפֹּל', root: 'נפל', parsing: '와이욕톨 칼 3인칭 남성 단수', gloss: '그가 넘어졌다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 3 },
+
+  // ============================================================
+  // ADDITIONAL STAGE 4: More binyan forms, weak verbs
+  // ============================================================
+
+  // --- Niphal Perfect: additional verbs ---
+  { form: 'נוֹלַד', root: 'ילד', parsing: '니팔 완료 3인칭 남성 단수', gloss: '태어났다', tense: '완료', voice: '니팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'נִשְׁאַר', root: 'שׁאר', parsing: '니팔 완료 3인칭 남성 단수', gloss: '남겨졌다', tense: '완료', voice: '니팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'נִקְרָא', root: 'קרא', parsing: '니팔 완료 3인칭 남성 단수', gloss: '불리었다', tense: '완료', voice: '니팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'נֶאֱמַר', root: 'אמר', parsing: '니팔 완료 3인칭 남성 단수', gloss: '말해졌다', tense: '완료', voice: '니팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'נִבְנָה', root: 'בנה', parsing: '니팔 완료 3인칭 남성 단수', gloss: '건축되었다', tense: '완료', voice: '니팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // --- Niphal Imperfect: additional ---
+  { form: 'יִוָּלֵד', root: 'ילד', parsing: '니팔 미완료 3인칭 남성 단수', gloss: '태어날 것이다', tense: '미완료', voice: '니팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יִשָּׁאֵר', root: 'שׁאר', parsing: '니팔 미완료 3인칭 남성 단수', gloss: '남겨질 것이다', tense: '미완료', voice: '니팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יִקָּרֵא', root: 'קרא', parsing: '니팔 미완료 3인칭 남성 단수', gloss: '불릴 것이다', tense: '미완료', voice: '니팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // --- Piel Perfect: additional verbs ---
+  { form: 'גִּדַּל', root: 'גדל', parsing: '피엘 완료 3인칭 남성 단수', gloss: '그가 키웠다', tense: '완료', voice: '피엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'קִדַּשׁ', root: 'קדשׁ', parsing: '피엘 완료 3인칭 남성 단수', gloss: '그가 거룩하게 했다', tense: '완료', voice: '피엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'כִּפֶּר', root: 'כפר', parsing: '피엘 완료 3인칭 남성 단수', gloss: '그가 속죄했다', tense: '완료', voice: '피엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'מִלֵּא', root: 'מלא', parsing: '피엘 완료 3인칭 남성 단수', gloss: '그가 채웠다', tense: '완료', voice: '피엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'לִמַּד', root: 'למד', parsing: '피엘 완료 3인칭 남성 단수', gloss: '그가 가르쳤다', tense: '완료', voice: '피엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // --- Piel Imperfect: additional ---
+  { form: 'יְגַדֵּל', root: 'גדל', parsing: '피엘 미완료 3인칭 남성 단수', gloss: '그가 키울 것이다', tense: '미완료', voice: '피엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יְקַדֵּשׁ', root: 'קדשׁ', parsing: '피엘 미완료 3인칭 남성 단수', gloss: '그가 거룩하게 할 것이다', tense: '미완료', voice: '피엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יְכַפֵּר', root: 'כפר', parsing: '피엘 미완료 3인칭 남성 단수', gloss: '그가 속죄할 것이다', tense: '미완료', voice: '피엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יְלַמֵּד', root: 'למד', parsing: '피엘 미완료 3인칭 남성 단수', gloss: '그가 가르칠 것이다', tense: '미완료', voice: '피엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // --- Hiphil Perfect: additional ---
+  { form: 'הוֹדִיעַ', root: 'ידע', parsing: '히필 완료 3인칭 남성 단수', gloss: '그가 알렸다', tense: '완료', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'הֶחֱזִיק', root: 'חזק', parsing: '히필 완료 3인칭 남성 단수', gloss: '그가 붙잡았다', tense: '완료', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'הִגְדִּיל', root: 'גדל', parsing: '히필 완료 3인칭 남성 단수', gloss: '그가 크게 했다', tense: '완료', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'הֵמִית', root: 'מות', parsing: '히필 완료 3인칭 남성 단수', gloss: '그가 죽였다', tense: '완료', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'הִשְׁלִיךְ', root: 'שׁלך', parsing: '히필 완료 3인칭 남성 단수', gloss: '그가 던졌다', tense: '완료', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'הֵשִׁיב', root: 'שׁוב', parsing: '히필 완료 3인칭 남성 단수', gloss: '그가 돌아오게 했다', tense: '완료', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // --- Hiphil Imperfect: additional ---
+  { form: 'יוֹדִיעַ', root: 'ידע', parsing: '히필 미완료 3인칭 남성 단수', gloss: '그가 알릴 것이다', tense: '미완료', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יַחֲזִיק', root: 'חזק', parsing: '히필 미완료 3인칭 남성 단수', gloss: '그가 붙잡을 것이다', tense: '미완료', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יָמִית', root: 'מות', parsing: '히필 미완료 3인칭 남성 단수', gloss: '그가 죽일 것이다', tense: '미완료', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יָשִׁיב', root: 'שׁוב', parsing: '히필 미완료 3인칭 남성 단수', gloss: '그가 돌려보낼 것이다', tense: '미완료', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // --- Pual Perfect: additional ---
+  { form: 'קֻדַּשׁ', root: 'קדשׁ', parsing: '푸알 완료 3인칭 남성 단수', gloss: '거룩하게 되었다', tense: '완료', voice: '푸알', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'לֻמַּד', root: 'למד', parsing: '푸알 완료 3인칭 남성 단수', gloss: '가르침을 받았다', tense: '완료', voice: '푸알', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'גֻּדַּל', root: 'גדל', parsing: '푸알 완료 3인칭 남성 단수', gloss: '키워졌다', tense: '완료', voice: '푸알', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // --- Hophal Perfect: additional ---
+  { form: 'הוּמַת', root: 'מות', parsing: '호팔 완료 3인칭 남성 단수', gloss: '죽임을 당했다', tense: '완료', voice: '호팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'הוּשְׁמַד', root: 'שׁמד', parsing: '호팔 완료 3인칭 남성 단수', gloss: '멸망당했다', tense: '완료', voice: '호팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'הוּגַּד', root: 'נגד', parsing: '호팔 완료 3인칭 남성 단수', gloss: '알려졌다', tense: '완료', voice: '호팔', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // --- Hithpael Perfect: additional ---
+  { form: 'הִתְחַנֵּן', root: 'חנן', parsing: '히트파엘 완료 3인칭 남성 단수', gloss: '간청했다', tense: '완료', voice: '히트파엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'הִתְגַּדֵּל', root: 'גדל', parsing: '히트파엘 완료 3인칭 남성 단수', gloss: '자신을 크게 했다', tense: '완료', voice: '히트파엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'הִתְיַצֵּב', root: 'יצב', parsing: '히트파엘 완료 3인칭 남성 단수', gloss: '서서 대항했다', tense: '완료', voice: '히트파엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // --- Hithpael Imperfect: additional ---
+  { form: 'יִתְחַנֵּן', root: 'חנן', parsing: '히트파엘 미완료 3인칭 남성 단수', gloss: '간청할 것이다', tense: '미완료', voice: '히트파엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יִתְקַדֵּשׁ', root: 'קדשׁ', parsing: '히트파엘 미완료 3인칭 남성 단수', gloss: '거룩해질 것이다', tense: '미완료', voice: '히트파엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יִשְׁתַּחֲוֶה', root: 'שׁחה', parsing: '히스타파엘 미완료 3인칭 남성 단수', gloss: '경배할 것이다', tense: '미완료', voice: '히트파엘', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // --- Weak verb: Pe-Yod (פ״י) ---
+  { form: 'יָלַד', root: 'ילד', parsing: '칼 완료 3인칭 남성 단수', gloss: '그가 낳았다', tense: '완료', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יֵלֵד', root: 'ילד', parsing: '칼 미완료 3인칭 남성 단수', gloss: '그가 낳을 것이다', tense: '미완료', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יָצָא', root: 'יצא', parsing: '칼 완료 3인칭 남성 단수', gloss: '그가 나갔다', tense: '완료', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יֵצֵא', root: 'יצא', parsing: '칼 미완료 3인칭 남성 단수', gloss: '그가 나갈 것이다', tense: '미완료', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יָרַד', root: 'ירד', parsing: '칼 완료 3인칭 남성 단수', gloss: '그가 내려갔다', tense: '완료', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+  { form: 'יֵרֵד', root: 'ירד', parsing: '칼 미완료 3인칭 남성 단수', gloss: '그가 내려갈 것이다', tense: '미완료', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 4 },
+
+  // ============================================================
+  // ADDITIONAL STAGE 5: More biblical text forms
+  // ============================================================
+
+  // --- Genesis narrative wayyiqtol ---
+  { form: 'וַיִּבְרָא', root: 'ברא', parsing: '와이욕톨 칼 3남단 (창 1:27)', gloss: '그리고 ~가 창조하셨다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 5 },
+  { form: 'וַיִּבֶן', root: 'בנה', parsing: '와이욕톨 칼 3남단 (창 2:22)', gloss: '그리고 ~가 만드셨다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 5 },
+  { form: 'וַיִּשְׁלַח', root: 'שׁלח', parsing: '와이욕톨 칼 3남단', gloss: '그리고 ~가 보냈다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 5 },
+  { form: 'וַיַּךְ', root: 'נכה', parsing: '와이욕톨 히필 3남단', gloss: '그리고 ~가 쳤다', tense: '와이욕톨', voice: '히필', mood: '직설법', person: '3', number: '남성 단수', stage: 5 },
+  { form: 'וַיֵּדַע', root: 'ידע', parsing: '와이욕톨 칼 3남단 (창 4:1)', gloss: '그리고 ~가 알았다', tense: '와이욕톨', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 5 },
+
+  // --- Isaiah / Prophetic forms ---
+  { form: 'יִמְלֹךְ', root: 'מלך', parsing: '칼 미완료 3인칭 남성 단수 (사 24:23)', gloss: '그가 다스릴 것이다', tense: '미완료', voice: '칼', mood: '직설법', person: '3', number: '남성 단수', stage: 5 },
+  { form: 'נוֹלַד', root: 'ילד', parsing: '푸알 완료 3남단 (사 9:5)', gloss: '태어났다 (아이가)', tense: '완료', voice: '푸알', mood: '직설법', person: '3', number: '남성 단수', stage: 5 },
+  { form: 'נִתַּן', root: 'נתן', parsing: '니팔 완료 3남단 (사 9:5)', gloss: '주어졌다 (아들이)', tense: '완료', voice: '니팔', mood: '직설법', person: '3', number: '남성 단수', stage: 5 },
+
+  // --- Psalm 119 forms ---
+  { form: 'לָמַדְתִּי', root: 'למד', parsing: '칼 완료 1인칭 공성 단수 (시 119)', gloss: '내가 배웠다', tense: '완료', voice: '칼', mood: '직설법', person: '1', number: '공성 단수', stage: 5 },
+  { form: 'לַמְּדֵנִי', root: 'למד', parsing: '피엘 명령법 2남단+1단접미 (시 119:12)', gloss: '나를 가르쳐 주소서', tense: '명령법', voice: '피엘', mood: '명령법', person: '2', number: '남성 단수', stage: 5 },
+  { form: 'חָנֵּנִי', root: 'חנן', parsing: '칼 명령법 2남단+1단접미 (시 119:29)', gloss: '나를 은혜롭게 하소서', tense: '명령법', voice: '칼', mood: '명령법', person: '2', number: '남성 단수', stage: 5 },
+  { form: 'הוֹשִׁיעֵנִי', root: 'ישׁע', parsing: '히필 명령법 2남단+1단접미 (시 119:94)', gloss: '나를 구원하소서', tense: '명령법', voice: '히필', mood: '명령법', person: '2', number: '남성 단수', stage: 5 },
 ];

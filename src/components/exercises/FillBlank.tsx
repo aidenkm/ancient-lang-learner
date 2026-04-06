@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Exercise } from '../../types';
-import Button from '../common/Button';
 
 interface FillBlankProps {
   exercise: Exercise;
@@ -10,66 +9,74 @@ interface FillBlankProps {
 }
 
 export default function FillBlank({ exercise, onAnswer, language }: FillBlankProps) {
-  const [input, setInput] = useState('');
+  const [selected, setSelected] = useState<string | null>(null);
   const [answered, setAnswered] = useState(false);
   const correctAnswer = exercise.correctAnswer as string;
-  const isCorrect = input.trim() === correctAnswer.trim();
   const textClass = language === 'hebrew' ? 'hebrew-text' : 'greek-text';
 
-  const handleCheck = () => {
-    if (!input.trim() || answered) return;
+  const handleSelect = (option: string) => {
+    if (answered) return;
+    setSelected(option);
     setAnswered(true);
-    const correct = input.trim() === correctAnswer.trim();
+    const correct = option === correctAnswer;
     setTimeout(() => onAnswer(correct), 800);
   };
+
+  const options = exercise.options || [correctAnswer];
 
   return (
     <div className="flex flex-col h-full">
       <div className="flex-1 flex flex-col items-center justify-center px-4">
         <p className="text-lg text-duo-text-dim mb-4">{exercise.instruction}</p>
-        <h2 className="text-2xl font-bold mb-8 text-center" dir="auto">{exercise.question}</h2>
+        <h2 className={`text-2xl font-bold mb-8 text-center ${textClass}`} dir="auto">
+          {exercise.question}
+        </h2>
 
-        <div className="w-full max-w-md">
-          <input
-            type="text"
-            value={input}
-            onChange={e => !answered && setInput(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && !answered && handleCheck()}
-            placeholder="답을 입력하세요..."
-            dir={language === 'hebrew' ? 'rtl' : 'ltr'}
-            className={`w-full p-4 rounded-xl border-2 bg-duo-card text-center text-xl
-              ${answered ? (isCorrect ? 'border-duo-green' : 'border-duo-red') : 'border-duo-card-light focus:border-duo-blue'}
-              text-duo-text outline-none transition-all ${textClass}`}
-            autoFocus
-          />
+        <div className="w-full max-w-md space-y-3">
+          {options.map((option) => {
+            const isSelected = selected === option;
+            const isCorrectOption = option === correctAnswer;
+
+            let borderClass = 'border-duo-card-light hover:border-duo-blue/50';
+            if (answered && isSelected && isCorrectOption) {
+              borderClass = 'border-duo-green bg-duo-green/10';
+            } else if (answered && isSelected && !isCorrectOption) {
+              borderClass = 'border-duo-red bg-duo-red/10';
+            } else if (answered && isCorrectOption) {
+              borderClass = 'border-duo-green/50';
+            }
+
+            return (
+              <motion.button
+                key={option}
+                whileTap={!answered ? { scale: 0.98 } : undefined}
+                onClick={() => handleSelect(option)}
+                disabled={answered}
+                className={`w-full p-4 rounded-xl border-2 bg-duo-card text-center text-lg
+                  ${borderClass} text-duo-text transition-all cursor-pointer
+                  disabled:cursor-default ${textClass}`}
+                dir="auto"
+              >
+                {option}
+              </motion.button>
+            );
+          })}
         </div>
       </div>
 
       {answered && (
-        <div className={`p-4 border-t border-duo-card-light ${isCorrect ? 'bg-duo-green/10' : 'bg-duo-red/10'}`}>
+        <div className={`p-4 border-t border-duo-card-light ${selected === correctAnswer ? 'bg-duo-green/10' : 'bg-duo-red/10'}`}>
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            {isCorrect ? (
-              <p className="text-duo-green font-bold">정답입니다! 🎉</p>
+            {selected === correctAnswer ? (
+              <p className="text-duo-green font-bold">정답입니다!</p>
             ) : (
               <div>
                 <p className="text-duo-red font-bold">틀렸습니다</p>
                 <p className="text-duo-text-dim text-sm">정답: <span className={textClass}>{correctAnswer}</span></p>
-                {exercise.hint && <p className="text-duo-text-dim text-sm mt-1">💡 {exercise.hint}</p>}
+                {exercise.hint && <p className="text-duo-text-dim text-sm mt-1">{exercise.hint}</p>}
               </div>
             )}
           </motion.div>
-        </div>
-      )}
-      {!answered && (
-        <div className="p-4 border-t border-duo-card-light">
-          <Button
-            onClick={handleCheck}
-            disabled={!input.trim()}
-            variant="primary"
-            fullWidth
-          >
-            확인
-          </Button>
         </div>
       )}
     </div>

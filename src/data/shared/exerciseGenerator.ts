@@ -82,12 +82,17 @@ export function generateFillBlank(
   const distractors = verse.words
     .filter((_, i) => i !== safeIndex)
     .map((w) => w.word)
-    .filter((w, i, arr) => arr.indexOf(w) === i) // unique
+    .filter((w, i, arr) => arr.indexOf(w) === i && w !== targetWord.word) // unique, exclude correct
     .slice(0, 3);
 
-  // If not enough distractors, pad with variations
+  // If not enough distractors, use glosses as hints with the word forms
   while (distractors.length < 3) {
-    distractors.push(`(${distractors.length + 1})`);
+    const fallbackWord = verse.words[distractors.length % verse.words.length];
+    if (fallbackWord && !distractors.includes(fallbackWord.word) && fallbackWord.word !== targetWord.word) {
+      distractors.push(fallbackWord.word);
+    } else {
+      break;
+    }
   }
 
   const options = seededShuffle([targetWord.word, ...distractors.slice(0, 3)], id);

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Exercise } from '../../types';
 
@@ -20,6 +20,19 @@ export default function MultipleChoice({ exercise, onAnswer, language }: Multipl
     const correct = option === exercise.correctAnswer;
     setTimeout(() => onAnswer(correct), 800);
   }, [answered, exercise.correctAnswer, onAnswer]);
+
+  // Keyboard shortcuts: 1-4 to select options
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (answered || !exercise.options) return;
+      const num = parseInt(e.key);
+      if (num >= 1 && num <= exercise.options.length) {
+        handleSelect(exercise.options[num - 1]);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [answered, exercise.options, handleSelect]);
 
   const isCorrect = selected === exercise.correctAnswer;
 
@@ -52,6 +65,7 @@ export default function MultipleChoice({ exercise, onAnswer, language }: Multipl
                 className={`w-full p-4 rounded-xl border-2 ${borderColor} ${bgColor} text-left transition-all cursor-pointer
                   ${!answered ? 'hover:border-duo-blue/50' : ''}`}
               >
+                <span className="text-duo-text-dim text-sm mr-3 font-mono">{i + 1}</span>
                 <span className="text-duo-text">{option}</span>
               </motion.button>
             );

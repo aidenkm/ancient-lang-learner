@@ -16,7 +16,10 @@ export function useAdmin(userId?: string | null) {
       .select('is_admin')
       .eq('user_id', userId)
       .single()
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        if (error) {
+          console.warn('[GreekHeb] 관리자 권한 확인 실패:', error.message);
+        }
         setIsAdmin(data?.is_admin ?? false);
         setLoading(false);
       });

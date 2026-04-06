@@ -1,0 +1,216 @@
+import { VerseData } from '../../../../types';
+
+/**
+ * Ecclesiastes 1:1-11 — 헛되고 헛되도다
+ * Word-by-word parsing (BHS/Leningrad Codex)
+ * Korean glosses and translations.
+ */
+export const eccl1Texts: VerseData[] = [
+  // ===== Ecclesiastes 1:1 =====
+  {
+    ref: 'Eccl 1:1',
+    text: 'דִּבְרֵי קֹהֶלֶת בֶּן־דָּוִד מֶלֶךְ בִּירוּשָׁלָ‍ִם',
+    translation: '다윗의 아들 예루살렘 왕 전도자의 말씀이라',
+    words: [
+      { word: 'דִּבְרֵי', gloss: '~의 말씀들', parsing: '연계형 남성 복수 명사', root: 'דבר' },
+      { word: 'קֹהֶלֶת', gloss: '전도자', parsing: '남성 명사 (고유 명사적)', root: 'קהל' },
+      { word: 'בֶּן', gloss: '아들', parsing: '연계형 남성 명사', root: 'בן' },
+      { word: 'דָּוִד', gloss: '다윗의', parsing: '고유 명사' },
+      { word: 'מֶלֶךְ', gloss: '왕', parsing: '남성 단수 명사', root: 'מלך' },
+      { word: 'בִּירוּשָׁלָ‍ִם', gloss: '예루살렘의', parsing: '전치사 ב + 고유 명사' },
+    ],
+  },
+  // ===== Ecclesiastes 1:2 =====
+  {
+    ref: 'Eccl 1:2',
+    text: 'הֲבֵל הֲבָלִים אָמַר קֹהֶלֶת הֲבֵל הֲבָלִים הַכֹּל הָבֶל',
+    translation: '전도자가 이르되 헛되고 헛되도다, 헛되고 헛되니 모든 것이 헛되도다',
+    words: [
+      { word: 'הֲבֵל', gloss: '헛됨', parsing: '연계형 남성 명사', root: 'הבל' },
+      { word: 'הֲבָלִים', gloss: '헛됨들의 (최상급)', parsing: '남성 복수 명사', root: 'הבל' },
+      { word: 'אָמַר', gloss: '말했다', parsing: '칼 완료 3남단', root: 'אמר' },
+      { word: 'קֹהֶלֶת', gloss: '전도자가', parsing: '남성 명사 (고유 명사적)', root: 'קהל' },
+      { word: 'הֲבֵל', gloss: '헛됨', parsing: '연계형 남성 명사', root: 'הבל' },
+      { word: 'הֲבָלִים', gloss: '헛됨들의', parsing: '남성 복수 명사', root: 'הבל' },
+      { word: 'הַכֹּל', gloss: '모든 것이', parsing: '정관사 + 남성 명사', root: 'כל' },
+      { word: 'הָבֶל', gloss: '헛되다', parsing: '남성 단수 명사', root: 'הבל' },
+    ],
+  },
+  // ===== Ecclesiastes 1:3 =====
+  {
+    ref: 'Eccl 1:3',
+    text: 'מַה־יִּתְרוֹן לָאָדָם בְּכָל־עֲמָלוֹ שֶׁיַּעֲמֹל תַּחַת הַשָּׁמֶשׁ',
+    translation: '해 아래에서 수고하는 모든 수고가 사람에게 무슨 유익이 있으랴',
+    words: [
+      { word: 'מַה', gloss: '무엇', parsing: '의문 대명사' },
+      { word: 'יִּתְרוֹן', gloss: '유익', parsing: '남성 단수 명사', root: 'יתר' },
+      { word: 'לָאָדָם', gloss: '사람에게', parsing: '전치사 ל + 정관사 + 남성 명사', root: 'אדם' },
+      { word: 'בְּכָל', gloss: '모든 ~에', parsing: '전치사 ב + 연계형 남성 명사', root: 'כל' },
+      { word: 'עֲמָלוֹ', gloss: '그의 수고', parsing: '남성 명사 + 3남단 접미사', root: 'עמל' },
+      { word: 'שֶׁיַּעֲמֹל', gloss: '수고하는', parsing: '관계사 שׁ + 칼 미완료 3남단', root: 'עמל' },
+      { word: 'תַּחַת', gloss: '아래에서', parsing: '전치사', root: 'תחת' },
+      { word: 'הַשָּׁמֶשׁ', gloss: '해', parsing: '정관사 + 남/여 명사', root: 'שׁמשׁ' },
+    ],
+  },
+  // ===== Ecclesiastes 1:4 =====
+  {
+    ref: 'Eccl 1:4',
+    text: 'דּוֹר הֹלֵךְ וְדוֹר בָּא וְהָאָרֶץ לְעוֹלָם עֹמָדֶת',
+    translation: '한 세대는 가고 한 세대는 오되 땅은 영원히 있도다',
+    words: [
+      { word: 'דּוֹר', gloss: '세대', parsing: '남성 단수 명사', root: 'דור' },
+      { word: 'הֹלֵךְ', gloss: '간다', parsing: '칼 분사 남성 단수', root: 'הלך' },
+      { word: 'וְדוֹר', gloss: '그리고 세대가', parsing: '접속사 + 남성 단수 명사', root: 'דור' },
+      { word: 'בָּא', gloss: '온다', parsing: '칼 분사 남성 단수', root: 'בוא' },
+      { word: 'וְהָאָרֶץ', gloss: '그러나 땅은', parsing: '접속사 + 정관사 + 여성 명사', root: 'ארץ' },
+      { word: 'לְעוֹלָם', gloss: '영원히', parsing: '전치사 ל + 남성 명사', root: 'עולם' },
+      { word: 'עֹמָדֶת', gloss: '서 있다', parsing: '칼 분사 여성 단수', root: 'עמד' },
+    ],
+  },
+  // ===== Ecclesiastes 1:5 =====
+  {
+    ref: 'Eccl 1:5',
+    text: 'וְזָרַח הַשֶּׁמֶשׁ וּבָא הַשָּׁמֶשׁ וְאֶל־מְקוֹמוֹ שׁוֹאֵף זוֹרֵחַ הוּא שָׁם',
+    translation: '해는 떠오르고 해는 지되 그 떠오르던 곳으로 빨리 돌아가는도다',
+    words: [
+      { word: 'וְזָרַח', gloss: '그리고 뜬다', parsing: '접속사 + 칼 완료 3남단', root: 'זרח' },
+      { word: 'הַשֶּׁמֶשׁ', gloss: '해가', parsing: '정관사 + 남/여 명사', root: 'שׁמשׁ' },
+      { word: 'וּבָא', gloss: '그리고 진다', parsing: '접속사 + 칼 완료/분사 3남단', root: 'בוא' },
+      { word: 'הַשָּׁמֶשׁ', gloss: '해가', parsing: '정관사 + 남/여 명사', root: 'שׁמשׁ' },
+      { word: 'וְאֶל', gloss: '그리고 ~으로', parsing: '접속사 + 전치사' },
+      { word: 'מְקוֹמוֹ', gloss: '그 장소로', parsing: '남성 명사 + 3남단 접미사', root: 'מקום' },
+      { word: 'שׁוֹאֵף', gloss: '급히 간다', parsing: '칼 분사 남성 단수', root: 'שׁאף' },
+      { word: 'זוֹרֵחַ', gloss: '뜨는', parsing: '칼 분사 남성 단수', root: 'זרח' },
+      { word: 'הוּא', gloss: '그것이', parsing: '3남단 독립 대명사' },
+      { word: 'שָׁם', gloss: '거기에서', parsing: '부사' },
+    ],
+  },
+  // ===== Ecclesiastes 1:6 =====
+  {
+    ref: 'Eccl 1:6',
+    text: 'הוֹלֵךְ אֶל־דָּרוֹם וְסוֹבֵב אֶל־צָפוֹן סוֹבֵב סֹבֵב הוֹלֵךְ הָרוּחַ וְעַל־סְבִיבֹתָיו שָׁב הָרוּחַ',
+    translation: '바람은 남으로 불다가 북으로 돌이키며 이리 돌며 저리 돌아 바람은 그 불던 곳으로 돌아가느니라',
+    words: [
+      { word: 'הוֹלֵךְ', gloss: '간다', parsing: '칼 분사 남성 단수', root: 'הלך' },
+      { word: 'אֶל־דָּרוֹם', gloss: '남쪽으로', parsing: '전치사 + 남성 명사', root: 'דרום' },
+      { word: 'וְסוֹבֵב', gloss: '그리고 돈다', parsing: '접속사 + 칼 분사 남성 단수', root: 'סבב' },
+      { word: 'אֶל־צָפוֹן', gloss: '북쪽으로', parsing: '전치사 + 남성 명사', root: 'צפון' },
+      { word: 'סוֹבֵב', gloss: '돌고', parsing: '칼 분사 남성 단수', root: 'סבב' },
+      { word: 'סֹבֵב', gloss: '돌아', parsing: '칼 분사 남성 단수', root: 'סבב' },
+      { word: 'הוֹלֵךְ', gloss: '가는', parsing: '칼 분사 남성 단수', root: 'הלך' },
+      { word: 'הָרוּחַ', gloss: '바람이', parsing: '정관사 + 여성 명사', root: 'רוח' },
+      { word: 'וְעַל', gloss: '그리고 ~위로', parsing: '접속사 + 전치사' },
+      { word: 'סְבִיבֹתָיו', gloss: '그 회전하는 곳으로', parsing: '여성 복수 명사 + 3남단 접미사', root: 'סביב' },
+      { word: 'שָׁב', gloss: '돌아간다', parsing: '칼 분사 남성 단수', root: 'שׁוב' },
+      { word: 'הָרוּחַ', gloss: '바람이', parsing: '정관사 + 여성 명사', root: 'רוח' },
+    ],
+  },
+  // ===== Ecclesiastes 1:7 =====
+  {
+    ref: 'Eccl 1:7',
+    text: 'כָּל־הַנְּחָלִים הֹלְכִים אֶל־הַיָּם וְהַיָּם אֵינֶנּוּ מָלֵא אֶל־מְקוֹם שֶׁהַנְּחָלִים הֹלְכִים שָׁם הֵם שָׁבִים לָלָכֶת',
+    translation: '모든 강물은 바다로 흘러가되 바다를 채우지 못하며 강물이 흘러가는 곳으로 다시 흘러가느니라',
+    words: [
+      { word: 'כָּל', gloss: '모든', parsing: '연계형 남성 명사', root: 'כל' },
+      { word: 'הַנְּחָלִים', gloss: '강들이', parsing: '정관사 + 남성 복수 명사', root: 'נחל' },
+      { word: 'הֹלְכִים', gloss: '간다', parsing: '칼 분사 남성 복수', root: 'הלך' },
+      { word: 'אֶל־הַיָּם', gloss: '바다로', parsing: '전치사 + 정관사 + 남성 명사', root: 'ים' },
+      { word: 'וְהַיָּם', gloss: '그리고 바다는', parsing: '접속사 + 정관사 + 남성 명사', root: 'ים' },
+      { word: 'אֵינֶנּוּ', gloss: '그것이 ~아니하다', parsing: '부정사 אין + 3남단 접미사' },
+      { word: 'מָלֵא', gloss: '가득 찬', parsing: '칼 분사/형용사 남성 단수', root: 'מלא' },
+      { word: 'אֶל־מְקוֹם', gloss: '장소로', parsing: '전치사 + 남성 명사', root: 'מקום' },
+      { word: 'שֶׁהַנְּחָלִים', gloss: '강들이 ~하는', parsing: '관계사 שׁ + 정관사 + 남성 복수', root: 'נחל' },
+      { word: 'הֹלְכִים', gloss: '가는', parsing: '칼 분사 남성 복수', root: 'הלך' },
+      { word: 'שָׁם', gloss: '거기에', parsing: '부사' },
+      { word: 'הֵם', gloss: '그것들이', parsing: '3남복 독립 대명사' },
+      { word: 'שָׁבִים', gloss: '돌아간다', parsing: '칼 분사 남성 복수', root: 'שׁוב' },
+      { word: 'לָלָכֶת', gloss: '가기 위해', parsing: '전치사 ל + 칼 부정사 연계형', root: 'הלך' },
+    ],
+  },
+  // ===== Ecclesiastes 1:8 =====
+  {
+    ref: 'Eccl 1:8',
+    text: 'כָּל־הַדְּבָרִים יְגֵעִים לֹא־יוּכַל אִישׁ לְדַבֵּר לֹא־תִשְׂבַּע עַיִן לִרְאוֹת וְלֹא־תִמָּלֵא אֹזֶן מִשְּׁמֹעַ',
+    translation: '모든 만물이 피곤하다는 것을 사람이 말로 다 할 수 없나니, 눈은 보아도 족함이 없고 귀는 들어도 차지 아니하도다',
+    words: [
+      { word: 'כָּל', gloss: '모든', parsing: '연계형 남성 명사', root: 'כל' },
+      { word: 'הַדְּבָרִים', gloss: '것들이', parsing: '정관사 + 남성 복수 명사', root: 'דבר' },
+      { word: 'יְגֵעִים', gloss: '피곤한', parsing: '남성 복수 형용사', root: 'יגע' },
+      { word: 'לֹא', gloss: '~할 수 없다', parsing: '부정 부사' },
+      { word: 'יוּכַל', gloss: '능하다', parsing: '칼 미완료 3남단', root: 'יכל' },
+      { word: 'אִישׁ', gloss: '사람이', parsing: '남성 단수 명사', root: 'אישׁ' },
+      { word: 'לְדַבֵּר', gloss: '말하기에', parsing: '전치사 ל + 피엘 부정사', root: 'דבר' },
+      { word: 'לֹא', gloss: '~않는다', parsing: '부정 부사' },
+      { word: 'תִשְׂבַּע', gloss: '만족하다', parsing: '칼 미완료 3여단', root: 'שׂבע' },
+      { word: 'עַיִן', gloss: '눈이', parsing: '여성 단수 명사', root: 'עין' },
+      { word: 'לִרְאוֹת', gloss: '보기에', parsing: '전치사 ל + 칼 부정사', root: 'ראה' },
+      { word: 'וְלֹא', gloss: '그리고 ~않는다', parsing: '접속사 + 부정 부사' },
+      { word: 'תִמָּלֵא', gloss: '가득 차다', parsing: '니팔 미완료 3여단', root: 'מלא' },
+      { word: 'אֹזֶן', gloss: '귀가', parsing: '여성 단수 명사', root: 'אזן' },
+      { word: 'מִשְּׁמֹעַ', gloss: '듣기에', parsing: '전치사 מן + 칼 부정사', root: 'שׁמע' },
+    ],
+  },
+  // ===== Ecclesiastes 1:9 =====
+  {
+    ref: 'Eccl 1:9',
+    text: 'מַה־שֶּׁהָיָה הוּא שֶׁיִּהְיֶה וּמַה־שֶּׁנַּעֲשָׂה הוּא שֶׁיֵּעָשֶׂה וְאֵין כָּל־חָדָשׁ תַּחַת הַשָּׁמֶשׁ',
+    translation: '이미 있던 것이 후에 다시 있겠고 이미 한 일을 후에 다시 할지라, 해 아래에는 새 것이 없나니',
+    words: [
+      { word: 'מַה', gloss: '무엇이', parsing: '의문/관계 대명사' },
+      { word: 'שֶּׁהָיָה', gloss: '있었던', parsing: '관계사 שׁ + 칼 완료 3남단', root: 'היה' },
+      { word: 'הוּא', gloss: '그것이', parsing: '3남단 독립 대명사' },
+      { word: 'שֶׁיִּהְיֶה', gloss: '있을', parsing: '관계사 שׁ + 칼 미완료 3남단', root: 'היה' },
+      { word: 'וּמַה', gloss: '그리고 무엇이', parsing: '접속사 + 관계 대명사' },
+      { word: 'שֶּׁנַּעֲשָׂה', gloss: '행해졌던', parsing: '관계사 שׁ + 니팔 완료 3남단', root: 'עשׂה' },
+      { word: 'הוּא', gloss: '그것이', parsing: '3남단 독립 대명사' },
+      { word: 'שֶׁיֵּעָשֶׂה', gloss: '행해질', parsing: '관계사 שׁ + 니팔 미완료 3남단', root: 'עשׂה' },
+      { word: 'וְאֵין', gloss: '그리고 없다', parsing: '접속사 + 부정 불변사', root: 'אין' },
+      { word: 'כָּל', gloss: '어떤', parsing: '남성 명사', root: 'כל' },
+      { word: 'חָדָשׁ', gloss: '새 것이', parsing: '남성 단수 형용사', root: 'חדשׁ' },
+      { word: 'תַּחַת', gloss: '아래에', parsing: '전치사', root: 'תחת' },
+      { word: 'הַשָּׁמֶשׁ', gloss: '해', parsing: '정관사 + 남/여 명사', root: 'שׁמשׁ' },
+    ],
+  },
+  // ===== Ecclesiastes 1:10 =====
+  {
+    ref: 'Eccl 1:10',
+    text: 'יֵשׁ דָּבָר שֶׁיֹּאמַר רְאֵה־זֶה חָדָשׁ הוּא כְּבָר הָיָה לְעֹלָמִים אֲשֶׁר הָיָה מִלְּפָנֵנוּ',
+    translation: '무엇이든지 "이것은 새 것이다"라고 할 것이 있으랴. 우리보다 앞서 있었던 세대들에 이미 있었느니라',
+    words: [
+      { word: 'יֵשׁ', gloss: '있다', parsing: '존재 불변사' },
+      { word: 'דָּבָר', gloss: '것이', parsing: '남성 단수 명사', root: 'דבר' },
+      { word: 'שֶׁיֹּאמַר', gloss: '~라고 말할', parsing: '관계사 שׁ + 칼 미완료 3남단', root: 'אמר' },
+      { word: 'רְאֵה', gloss: '보라', parsing: '칼 명령 2남단', root: 'ראה' },
+      { word: 'זֶה', gloss: '이것은', parsing: '지시 대명사 남성 단수' },
+      { word: 'חָדָשׁ', gloss: '새 것이다', parsing: '남성 단수 형용사', root: 'חדשׁ' },
+      { word: 'הוּא', gloss: '그것은', parsing: '3남단 독립 대명사' },
+      { word: 'כְּבָר', gloss: '이미', parsing: '부사' },
+      { word: 'הָיָה', gloss: '있었다', parsing: '칼 완료 3남단', root: 'היה' },
+      { word: 'לְעֹלָמִים', gloss: '오래 전에', parsing: '전치사 ל + 남성 복수 명사', root: 'עולם' },
+      { word: 'אֲשֶׁר', gloss: '~한', parsing: '관계 대명사' },
+      { word: 'הָיָה', gloss: '있었다', parsing: '칼 완료 3남단', root: 'היה' },
+      { word: 'מִלְּפָנֵנוּ', gloss: '우리보다 앞서', parsing: '전치사 מן + 전치사 ל + 남성 복수 명사 + 1복', root: 'פנים' },
+    ],
+  },
+  // ===== Ecclesiastes 1:11 =====
+  {
+    ref: 'Eccl 1:11',
+    text: 'אֵין זִכְרוֹן לָרִאשֹׁנִים וְגַם לָאַחֲרֹנִים שֶׁיִּהְיוּ לֹא־יִהְיֶה לָהֶם זִכָּרוֹן עִם שֶׁיִּהְיוּ לָאַחֲרֹנָה',
+    translation: '이전 세대에 대한 기억이 없으니 장래 세대들도 그 후에 올 세대들의 기억에 남지 아니하리라',
+    words: [
+      { word: 'אֵין', gloss: '없다', parsing: '부정 불변사', root: 'אין' },
+      { word: 'זִכְרוֹן', gloss: '기억이', parsing: '남성 단수 명사', root: 'זכר' },
+      { word: 'לָרִאשֹׁנִים', gloss: '이전 것들에 대한', parsing: '전치사 ל + 정관사 + 남성 복수 형용사', root: 'ראשׁון' },
+      { word: 'וְגַם', gloss: '그리고 또한', parsing: '접속사 + 부사' },
+      { word: 'לָאַחֲרֹנִים', gloss: '나중 것들도', parsing: '전치사 ל + 정관사 + 남성 복수 형용사', root: 'אחרון' },
+      { word: 'שֶׁיִּהְיוּ', gloss: '있게 될', parsing: '관계사 שׁ + 칼 미완료 3남복', root: 'היה' },
+      { word: 'לֹא', gloss: '~않을 것이다', parsing: '부정 부사' },
+      { word: 'יִהְיֶה', gloss: '있다', parsing: '칼 미완료 3남단', root: 'היה' },
+      { word: 'לָהֶם', gloss: '그들에게', parsing: '전치사 ל + 3남복 접미사' },
+      { word: 'זִכָּרוֹן', gloss: '기억이', parsing: '남성 단수 명사', root: 'זכר' },
+      { word: 'עִם', gloss: '~와 함께', parsing: '전치사' },
+      { word: 'שֶׁיִּהְיוּ', gloss: '있게 될', parsing: '관계사 שׁ + 칼 미완료 3남복', root: 'היה' },
+      { word: 'לָאַחֲרֹנָה', gloss: '나중에', parsing: '전치사 ל + 정관사 + 여성 형용사', root: 'אחרון' },
+    ],
+  },
+];

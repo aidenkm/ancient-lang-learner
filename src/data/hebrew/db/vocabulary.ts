@@ -248,4 +248,151 @@ export const hebrewVocabulary: WordData[] = [
   { word: 'עֹלָה', gloss: '번제', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 286 },
   { word: 'זֶבַח', gloss: '제사, 희생제물', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 162 },
   { word: 'שִׁיר', gloss: '노래', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 78 },
+
+  // =============================================
+  // STAGE 3 — 추가 어휘 (빈도순)
+  // =============================================
+
+  // --- 추가 명사 (Stage 3) ---
+  { word: 'חַיִל', gloss: '군대, 힘, 용사', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 243 },
+  { word: 'הַר', gloss: '산', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 558 },
+  { word: 'שַׂר', gloss: '지도자, 장관', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 421 },
+  { word: 'נָהָר', gloss: '강, 시내', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 119 },
+  { word: 'עֵץ', gloss: '나무', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 330 },
+  { word: 'אֶבֶן', gloss: '돌', parsing: '여성 단수 명사', category: 'noun', stage: 3, frequency: 272 },
+  { word: 'חוֹמָה', gloss: '성벽', parsing: '여성 단수 명사', category: 'noun', stage: 3, frequency: 133 },
+  { word: 'שַׁעַר', gloss: '문, 성문', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 373 },
+  { word: 'כֶּסֶף', gloss: '은, 돈', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 403 },
+  { word: 'זָהָב', gloss: '금', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 392 },
+  { word: 'בָּשָׂר', gloss: '살, 육체', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 270 },
+  { word: 'דָּם', gloss: '피', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 361 },
+  { word: 'לֶחֶם', gloss: '빵, 음식', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 298 },
+  { word: 'עוֹן', gloss: '죄악, 형벌', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 233 },
+  { word: 'חַטָּאת', gloss: '죄, 속죄제', parsing: '여성 단수 명사', category: 'noun', stage: 3, frequency: 296 },
+  { word: 'אֵשׁ', gloss: '불', parsing: '여성 단수 명사', category: 'noun', stage: 3, frequency: 376 },
+  { word: 'מַחֲנֶה', gloss: '진영', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 215 },
+  { word: 'סוּס', gloss: '말 (동물)', parsing: '남성 단수 명사', category: 'noun', stage: 3, frequency: 138 },
+  { word: 'רֶגֶל', gloss: '발', parsing: '여성 단수 명사', category: 'noun', stage: 3, frequency: 251 },
+  { word: 'כָּנָף', gloss: '날개, 옷자락', parsing: '여성 단수 명사', category: 'noun', stage: 3, frequency: 111 },
+
+  // --- 추가 동사 (Stage 3) ---
+  { word: 'אָהַב', gloss: '사랑하다', parsing: '칼 완료 3남단', root: 'אהב', category: 'verb', stage: 3, frequency: 217 },
+  { word: 'שָׁכַב', gloss: '눕다', parsing: '칼 완료 3남단', root: 'שׁכב', category: 'verb', stage: 3, frequency: 213 },
+  { word: 'חָיָה', gloss: '살다', parsing: '칼 완료 3남단', root: 'חיה', category: 'verb', stage: 3, frequency: 283 },
+  { word: 'שָׁפַט', gloss: '재판하다', parsing: '칼 완료 3남단', root: 'שׁפט', category: 'verb', stage: 3, frequency: 204 },
+  { word: 'מָשַׁל', gloss: '다스리다, 지배하다', parsing: '칼 완료 3남단', root: 'משׁל', category: 'verb', stage: 3, frequency: 81 },
+  { word: 'קָבַר', gloss: '매장하다', parsing: '칼 완료 3남단', root: 'קבר', category: 'verb', stage: 3, frequency: 133 },
+  { word: 'עָזַב', gloss: '버리다', parsing: '칼 완료 3남단', root: 'עזב', category: 'verb', stage: 3, frequency: 214 },
+  { word: 'רָדַף', gloss: '쫓다, 추격하다', parsing: '칼 완료 3남단', root: 'רדף', category: 'verb', stage: 3, frequency: 144 },
+  { word: 'לָבַשׁ', gloss: '입다', parsing: '칼 완료 3남단', root: 'לבשׁ', category: 'verb', stage: 3, frequency: 112 },
+  { word: 'סָבַב', gloss: '돌다, 둘러싸다', parsing: '칼 완료 3남단', root: 'סבב', category: 'verb', stage: 3, frequency: 163 },
+
+  // --- 추가 전치사/접속사 (Stage 3) ---
+  { word: 'עִם', gloss: '~와 함께', parsing: '전치사', category: 'prep', stage: 3, frequency: 1048 },
+  { word: 'כְּ', gloss: '~처럼, ~같이', parsing: '전치사 접두사', category: 'prep', stage: 3, frequency: 3053 },
+  { word: 'אוֹ', gloss: '또는', parsing: '접속사', category: 'conj', stage: 3, frequency: 321 },
+  { word: 'פֶּן', gloss: '~하지 않도록', parsing: '접속사', category: 'conj', stage: 3, frequency: 133 },
+  { word: 'לָמָּה', gloss: '왜?', parsing: '의문 부사', category: 'adv', stage: 3, frequency: 178 },
+
+  // =============================================
+  // STAGE 4 — 추가 어휘
+  // =============================================
+
+  // --- 추가 신학/제의 명사 (Stage 4) ---
+  { word: 'קֹדֶשׁ', gloss: '거룩함, 성소', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 470 },
+  { word: 'כַּפֹּרֶת', gloss: '속죄소, 시은좌', parsing: '여성 단수 명사', category: 'noun', stage: 4, frequency: 27 },
+  { word: 'אֲרוֹן', gloss: '궤, 상자', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 202 },
+  { word: 'מְנוֹרָה', gloss: '등대, 촛대', parsing: '여성 단수 명사', category: 'noun', stage: 4, frequency: 40 },
+  { word: 'אֹהֶל', gloss: '장막', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 348 },
+  { word: 'כְּרוּב', gloss: '그룹 (천사)', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 91 },
+  { word: 'מַלְאָךְ', gloss: '사자, 천사', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 213 },
+  { word: 'חֵטְא', gloss: '죄', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 35 },
+  { word: 'אָשָׁם', gloss: '속건제, 죄책', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 46 },
+  { word: 'שֶׁמֶן', gloss: '기름', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 193 },
+  { word: 'יַיִן', gloss: '포도주', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 141 },
+  { word: 'מִנְחָה', gloss: '소제, 공물', parsing: '여성 단수 명사', category: 'noun', stage: 4, frequency: 211 },
+  { word: 'עֶרֶב', gloss: '저녁', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 134 },
+  { word: 'בֹּקֶר', gloss: '아침', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 213 },
+  { word: 'חֹדֶשׁ', gloss: '달 (월), 새 달', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 283 },
+  { word: 'שַׁבָּת', gloss: '안식일', parsing: '여성 단수 명사', category: 'noun', stage: 4, frequency: 111 },
+  { word: 'מוֹעֵד', gloss: '지정된 시간, 절기', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 223 },
+  { word: 'גְּבוּל', gloss: '경계, 영토', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 241 },
+  { word: 'מַטֶּה', gloss: '지팡이, 지파', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 252 },
+
+  // --- 추가 고급 동사 (Stage 4) ---
+  { word: 'קָדַשׁ', gloss: '거룩하게 하다', parsing: '칼/피엘 완료 3남단', root: 'קדשׁ', category: 'verb', stage: 4, frequency: 171 },
+  { word: 'טָהֵר', gloss: '깨끗하다, 정결하다', parsing: '칼 완료 3남단', root: 'טהר', category: 'verb', stage: 4, frequency: 94 },
+  { word: 'טָמֵא', gloss: '부정하다', parsing: '칼 완료 3남단', root: 'טמא', category: 'verb', stage: 4, frequency: 162 },
+  { word: 'כִּפֶּר', gloss: '속죄하다', parsing: '피엘 완료 3남단', root: 'כפר', category: 'verb', stage: 4, frequency: 102 },
+  { word: 'נָדַר', gloss: '서원하다', parsing: '칼 완료 3남단', root: 'נדר', category: 'verb', stage: 4, frequency: 31 },
+  { word: 'הִזְכִּיר', gloss: '기억나게 하다', parsing: '히필 완료 3남단', root: 'זכר', category: 'verb', stage: 4, frequency: 233 },
+  { word: 'הִתְחַזֵּק', gloss: '강해지다, 힘을 내다', parsing: '히트파엘 완료 3남단', root: 'חזק', category: 'verb', stage: 4, frequency: 290 },
+  { word: 'הִקְרִיב', gloss: '가까이 하다, 제물로 바치다', parsing: '히필 완료 3남단', root: 'קרב', category: 'verb', stage: 4, frequency: 280 },
+  { word: 'הִקְדִּישׁ', gloss: '구별하다, 거룩히 하다', parsing: '히필 완료 3남단', root: 'קדשׁ', category: 'verb', stage: 4, frequency: 171 },
+  { word: 'נֶחֱלַשׁ', gloss: '약해지다', parsing: '니팔 완료 3남단', root: 'חלשׁ', category: 'verb', stage: 4, frequency: 15 },
+
+  // =============================================
+  // STAGE 5 — 추가 독해 수준 어휘
+  // =============================================
+
+  // --- 추가 명사 (Stage 5) ---
+  { word: 'פֶּתַח', gloss: '입구, 문', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 164 },
+  { word: 'כִּסֵּא', gloss: '왕좌, 의자', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 135 },
+  { word: 'מֶרְכָּבָה', gloss: '병거', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 44 },
+  { word: 'חֵלֶב', gloss: '기름, 지방', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 92 },
+  { word: 'קֶבֶר', gloss: '무덤', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 67 },
+  { word: 'מַעֲשֶׂה', gloss: '행위, 일', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 235 },
+  { word: 'תּוֹעֵבָה', gloss: '역겨운 것, 가증한 것', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 117 },
+  { word: 'אַמָּה', gloss: '규빗 (길이 단위)', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 245 },
+  { word: 'כֶּרֶם', gloss: '포도원', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 94 },
+  { word: 'שָׂדֶה', gloss: '들, 밭', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 329 },
+  { word: 'בְּאֵר', gloss: '우물', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 37 },
+  { word: 'נַחַל', gloss: '시내, 골짜기', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 137 },
+  { word: 'מַעְיָן', gloss: '샘, 원천', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 23 },
+  { word: 'צֶדֶק', gloss: '의, 공의', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 123 },
+  { word: 'אֱמֶת', gloss: '진리, 진실', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 127 },
+  { word: 'נֵר', gloss: '등불, 램프', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 48 },
+  { word: 'קֶשֶׁת', gloss: '활', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 77 },
+  { word: 'חֵץ', gloss: '화살', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 56 },
+  { word: 'מָגֵן', gloss: '방패', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 63 },
+  { word: 'חֲנִית', gloss: '창', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 47 },
+
+  // --- 추가 동사 (Stage 5) ---
+  { word: 'חָנַן', gloss: '은혜를 베풀다', parsing: '칼 완료 3남단', root: 'חנן', category: 'verb', stage: 5, frequency: 77 },
+  { word: 'שָׁאַל', gloss: '묻다, 요청하다', parsing: '칼 완료 3남단', root: 'שׁאל', category: 'verb', stage: 5, frequency: 176 },
+  { word: 'חָשַׁב', gloss: '생각하다, 계획하다', parsing: '칼 완료 3남단', root: 'חשׁב', category: 'verb', stage: 5, frequency: 124 },
+  { word: 'רָפָא', gloss: '고치다, 치료하다', parsing: '칼 완료 3남단', root: 'רפא', category: 'verb', stage: 5, frequency: 69 },
+  { word: 'בָּחַר', gloss: '선택하다', parsing: '칼 완료 3남단', root: 'בחר', category: 'verb', stage: 5, frequency: 172 },
+  { word: 'גָּלָה', gloss: '드러내다, 유배 가다', parsing: '칼 완료 3남단', root: 'גלה', category: 'verb', stage: 5, frequency: 187 },
+
+  // --- 추가 형용사/부사 (Stage 3-4) ---
+  { word: 'צַדִּיק', gloss: '의로운', parsing: '형용사', category: 'adj', stage: 3, frequency: 206 },
+  { word: 'רָשָׁע', gloss: '악한', parsing: '형용사', category: 'adj', stage: 3, frequency: 264 },
+  { word: 'חָכָם', gloss: '지혜로운', parsing: '형용사', category: 'adj', stage: 3, frequency: 138 },
+  { word: 'נָכְרִי', gloss: '외국의, 이방의', parsing: '형용사', category: 'adj', stage: 4, frequency: 46 },
+  { word: 'טָמֵא', gloss: '부정한', parsing: '형용사', category: 'adj', stage: 4, frequency: 88 },
+  { word: 'טָהוֹר', gloss: '깨끗한, 정결한', parsing: '형용사', category: 'adj', stage: 4, frequency: 96 },
+  { word: 'עָנָו', gloss: '겸손한', parsing: '형용사', category: 'adj', stage: 4, frequency: 21 },
+  { word: 'נֶאֱמָן', gloss: '신실한, 믿을 수 있는', parsing: '니팔 분사/형용사', category: 'adj', stage: 4, frequency: 97 },
+  { word: 'עַז', gloss: '강한, 거센', parsing: '형용사', category: 'adj', stage: 4, frequency: 23 },
+  { word: 'תָּמִים', gloss: '흠 없는, 온전한', parsing: '형용사', category: 'adj', stage: 4, frequency: 91 },
+
+  // --- 추가 부사/전치사 (Stage 4-5) ---
+  { word: 'שָׁם', gloss: '거기에', parsing: '부사', category: 'adv', stage: 3, frequency: 835 },
+  { word: 'מְאֹד', gloss: '매우', parsing: '부사', category: 'adv', stage: 3, frequency: 300 },
+  { word: 'עוֹד', gloss: '아직, 여전히, 다시', parsing: '부사', category: 'adv', stage: 3, frequency: 491 },
+  { word: 'כֵּן', gloss: '그러므로, 그렇게', parsing: '부사', category: 'adv', stage: 3, frequency: 741 },
+  { word: 'סָבִיב', gloss: '주위에, 둘레에', parsing: '부사/전치사', category: 'adv', stage: 4, frequency: 338 },
+
+  // --- 추가 명사 (Stage 4-5) ---
+  { word: 'עֵגֶל', gloss: '송아지', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 35 },
+  { word: 'שׁוֹר', gloss: '소, 황소', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 79 },
+  { word: 'חֲמוֹר', gloss: '나귀', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 96 },
+  { word: 'כֶּבֶשׂ', gloss: '어린 양', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 107 },
+  { word: 'גָּמָל', gloss: '낙타', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 54 },
+  { word: 'מִקְדָּשׁ', gloss: '성소, 성전', parsing: '남성 단수 명사', category: 'noun', stage: 4, frequency: 75 },
+  { word: 'בָּמָה', gloss: '산당, 높은 곳', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 106 },
+  { word: 'פֶּסַח', gloss: '유월절', parsing: '남성 단수 명사', category: 'noun', stage: 5, frequency: 49 },
+  { word: 'סֻכָּה', gloss: '초막', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 31 },
+  { word: 'תְּרוּמָה', gloss: '봉헌물, 예물', parsing: '여성 단수 명사', category: 'noun', stage: 5, frequency: 76 },
 ];

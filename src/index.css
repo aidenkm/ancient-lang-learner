@@ -55,3 +55,15 @@ body {
   direction: rtl;
   unicode-bidi: isolate;
 }
+
+/* Keyboard focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-duo-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-duo-blue);
+  outline-offset: 2px;
+}

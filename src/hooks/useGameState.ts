@@ -15,7 +15,11 @@ export function useGameState(userId?: string | null) {
       .select('game_state')
       .eq('user_id', userId)
       .single()
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        if (error) {
+          console.warn('[GreekHeb] 클라우드 진행 상태 로드 실패:', error.message);
+          return;
+        }
         if (data?.game_state) {
           setGameState(data.game_state as GameState);
         }
@@ -30,7 +34,11 @@ export function useGameState(userId?: string | null) {
       supabase
         .from('greekheb_progress')
         .upsert({ user_id: userId, game_state: state, updated_at: new Date().toISOString() })
-        .then(() => {});
+        .then(({ error }) => {
+          if (error) {
+            console.warn('[GreekHeb] 클라우드 저장 실패:', error.message);
+          }
+        });
     }, 1000); // debounce 1s
   }, [userId]);
 
@@ -43,7 +51,7 @@ export function useGameState(userId?: string | null) {
     });
   }, [setGameState, saveToCloud]);
 
-  const selectLanguage = (lang: Language) => {
+  const selectLanguage = (lang: Language | null) => {
     setState(prev => ({ ...prev, selectedLanguage: lang }));
   };
 

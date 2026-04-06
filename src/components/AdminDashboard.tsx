@@ -30,14 +30,24 @@ export default function AdminDashboard({ onBack }: AdminDashboardProps) {
     setLoading(true);
 
     // Fetch profiles
-    const { data: profiles } = await supabase
+    const { data: profiles, error: profilesError } = await supabase
       .from('greekheb_profiles')
       .select('user_id, display_name, is_admin, created_at');
 
+    if (profilesError) {
+      console.warn('[GreekHeb] 프로필 로드 실패:', profilesError.message);
+      setLoading(false);
+      return;
+    }
+
     // Fetch progress
-    const { data: progress } = await supabase
+    const { data: progress, error: progressError } = await supabase
       .from('greekheb_progress')
       .select('user_id, game_state, updated_at');
+
+    if (progressError) {
+      console.warn('[GreekHeb] 진행 상태 로드 실패:', progressError.message);
+    }
 
     const progressMap = new Map(
       (progress || []).map((p: any) => [p.user_id, p])

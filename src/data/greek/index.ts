@@ -18,13 +18,25 @@ import { apostolicFathersTexts } from './db/texts/apostolicFathers';
 import { hebrewsTexts } from './db/texts/hebrews';
 import { galatiansTexts } from './db/texts/galatians';
 import { corinthiansTexts } from './db/texts/corinthians';
+import { john4Texts } from './db/texts/john4';
+import { mark2Texts } from './db/texts/mark2';
+import { romans1Texts } from './db/texts/romans1';
+import { genesisLxx2Texts } from './db/texts/genesis-lxx-2';
+import { ruthLxxTexts } from './db/texts/ruth-lxx';
+import { jonahLxxTexts } from './db/texts/jonah-lxx';
 
 const textRegistry: Record<string, typeof johnTexts> = {
   john: johnTexts,
   john3: john3Texts,
+  john4: john4Texts,
   mark: markTexts,
+  mark2: mark2Texts,
+  romans1: romans1Texts,
   romans8: romansTexts,
   'genesis-lxx': genesisLxxTexts,
+  'genesis-lxx-2': genesisLxx2Texts,
+  'ruth-lxx': ruthLxxTexts,
+  'jonah-lxx': jonahLxxTexts,
   firstJohn: firstJohnTexts,
   plato: platoTexts,
   aristotle: aristotleTexts,
@@ -41,7 +53,7 @@ const textRegistry: Record<string, typeof johnTexts> = {
 export const greekStages: StageInfo[] = greekStageMeta.map((stageMeta) => {
   const units = stageMeta.units.map((unitMeta: UnitMeta) => {
     const vocabSlice = unitMeta.vocabRange
-      ? greekVocabulary.filter((w) => w.stage <= stageMeta.id).slice(unitMeta.vocabRange[0], unitMeta.vocabRange[1])
+      ? greekVocabulary.slice(unitMeta.vocabRange[0], unitMeta.vocabRange[1]).filter((w) => w.stage <= stageMeta.id)
       : undefined;
 
     const verbSlice = unitMeta.verbCategory

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Language, PlacementQuestion } from '../types';
 import { greekPlacementQuestions } from '../data/greek/placement';
@@ -26,7 +26,7 @@ export default function PlacementTest({ language, onComplete, onSkip }: Placemen
   const isCorrect = selected === question?.correctAnswer;
   const progress = ((currentIndex + 1) / questions.length) * 100;
 
-  const handleSelect = (option: string) => {
+  const handleSelect = useCallback((option: string) => {
     if (answered) return;
     setSelected(option);
     setAnswered(true);
@@ -67,7 +67,20 @@ export default function PlacementTest({ language, onComplete, onSkip }: Placemen
       setSelected(null);
       setAnswered(false);
     }, 800);
-  };
+  }, [answered, question, score, consecutiveWrong, currentIndex, questions.length, onComplete]);
+
+  // Keyboard shortcuts: 1-4
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (answered || !question) return;
+      const num = parseInt(e.key);
+      if (num >= 1 && num <= question.options.length) {
+        handleSelect(question.options[num - 1]);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [answered, question, handleSelect]);
 
   if (finished) {
     return (
@@ -159,6 +172,7 @@ export default function PlacementTest({ language, onComplete, onSkip }: Placemen
                     className={`w-full p-4 rounded-xl border-2 ${borderColor} ${bgColor} text-left transition-all cursor-pointer
                       ${!answered ? 'hover:border-duo-blue/50' : ''}`}
                   >
+                    <span className="text-duo-text-dim text-sm mr-3 font-mono">{i + 1}</span>
                     {option}
                   </motion.button>
                 );

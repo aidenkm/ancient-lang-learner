@@ -127,7 +127,7 @@ function App() {
   };
 
   const handleBack = () => {
-    selectLanguage(null as any);
+    selectLanguage(null);
     setScreen('languageSelect');
   };
 

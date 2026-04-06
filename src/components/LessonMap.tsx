@@ -73,10 +73,11 @@ export default function LessonMap({ language, progress, onSelectLesson, onBack }
             </motion.div>
 
             {/* Units and Lessons */}
-            {stage.units.map(unit => (
+            {stage.units.filter(unit => unit.lessons.length > 0).map(unit => (
               <div key={unit.id} className="mb-8">
                 <p className="text-sm text-duo-text-dim mb-4 flex items-center gap-2">
                   <span>{unit.icon}</span> {unit.title}
+                  <span className="text-duo-text-dim/50 ml-auto">{unit.lessons.length}레슨</span>
                 </p>
                 <div className="flex flex-col items-center gap-4">
                   {unit.lessons.map((lesson, lessonIdx) => {

@@ -88,18 +88,17 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
       }
     } else {
       setComboCount(0);
-      // Add review exercise to the end of the queue
-      const reviewEx = createReviewExercise(exercise, reviewCount + 1);
-      setExerciseQueue(prev => [...prev, reviewEx]);
-      setReviewCount(prev => prev + 1);
+      // Add review exercise (max 3 reviews to prevent infinite loop)
+      if (reviewCount < 3) {
+        const reviewEx = createReviewExercise(exercise, reviewCount + 1);
+        setExerciseQueue(prev => [...prev, reviewEx]);
+        setReviewCount(prev => prev + 1);
+      }
     }
 
-    if (currentIndex >= exerciseQueue.length - 1 && correct) {
-      // Only finish if the last exercise was answered correctly
+    if (currentIndex >= exerciseQueue.length - 1 && (correct || reviewCount >= 3)) {
+      // Finish when last exercise correct, or max reviews reached
       setFinished(true);
-    } else if (currentIndex >= exerciseQueue.length - 1 && !correct) {
-      // Wrong on last exercise — a review was added, so move to it
-      setCurrentIndex(prev => prev + 1);
     } else {
       setCurrentIndex(prev => prev + 1);
     }

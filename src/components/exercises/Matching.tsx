@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Exercise } from '../../types';
-import Button from '../common/Button';
 
 interface MatchingProps {
   exercise: Exercise;
@@ -14,25 +13,28 @@ export default function Matching({ exercise, onAnswer, language }: MatchingProps
   const [selectedLeft, setSelectedLeft] = useState<string | null>(null);
   const [matched, setMatched] = useState<Set<string>>(new Set());
   const [wrongPair, setWrongPair] = useState<string | null>(null);
-  const [answered, setAnswered] = useState(false);
+  const [wrongCount, setWrongCount] = useState(0);
+  const [done, setDone] = useState(false);
   const textClass = language === 'hebrew' ? 'hebrew-text' : 'greek-text';
+  const autoAdvancedRef = useRef(false);
 
   // Shuffle right side
   const [shuffledRight] = useState(() => [...pairs.map(p => p.right)].sort(() => Math.random() - 0.5));
 
   const handleLeftClick = (left: string) => {
-    if (matched.has(left) || answered) return;
+    if (matched.has(left) || done) return;
     setSelectedLeft(left);
     setWrongPair(null);
   };
 
   const handleRightClick = (right: string) => {
-    if (!selectedLeft || answered) return;
+    if (!selectedLeft || done) return;
     const correctPair = pairs.find(p => p.left === selectedLeft);
     if (correctPair && correctPair.right === right) {
       setMatched(prev => new Set([...prev, selectedLeft]));
       setSelectedLeft(null);
     } else {
+      setWrongCount(prev => prev + 1);
       setWrongPair(right);
       setTimeout(() => {
         setWrongPair(null);
@@ -43,9 +45,14 @@ export default function Matching({ exercise, onAnswer, language }: MatchingProps
 
   const allMatched = matched.size === pairs.length;
 
-  if (allMatched && !answered) {
-    setTimeout(() => setAnswered(true), 300);
-  }
+  // Auto-advance when all matched
+  useEffect(() => {
+    if (allMatched && !done && !autoAdvancedRef.current) {
+      autoAdvancedRef.current = true;
+      setDone(true);
+      setTimeout(() => onAnswer(wrongCount === 0), 1000);
+    }
+  }, [allMatched, done, wrongCount, onAnswer]);
 
   const isRightMatched = (right: string) => {
     return Array.from(matched).some(left => {
@@ -57,7 +64,10 @@ export default function Matching({ exercise, onAnswer, language }: MatchingProps
   return (
     <div className="flex flex-col h-full">
       <div className="flex-1 flex flex-col items-center justify-center px-4">
-        <p className="text-lg text-duo-text-dim mb-4">{exercise.instruction}</p>
+        <p className="text-lg text-duo-text-dim mb-2">{exercise.instruction}</p>
+        <p className="text-sm text-duo-text-dim mb-4">
+          {matched.size}/{pairs.length} 완료
+        </p>
 
         <div className="w-full max-w-lg grid grid-cols-2 gap-4">
           {/* Left column */}
@@ -98,24 +108,17 @@ export default function Matching({ exercise, onAnswer, language }: MatchingProps
         </div>
       </div>
 
-      <div className={`p-4 border-t border-duo-card-light ${answered ? 'bg-duo-green/10' : ''}`}>
-        {answered && (
+      {done && (
+        <div className="p-4 border-t border-duo-card-light bg-duo-green/10">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-duo-green font-bold mb-3"
+            className="text-duo-green font-bold"
           >
-            모두 맞췄습니다! 🎉
+            {wrongCount === 0 ? '모두 맞췄습니다!' : `완료! (${wrongCount}번 틀림)`}
           </motion.p>
-        )}
-        <Button
-          onClick={() => onAnswer(true)}
-          disabled={!allMatched}
-          fullWidth
-        >
-          {answered ? '계속하기' : '모두 짝지으세요'}
-        </Button>
-      </div>
+        </div>
+      )}
     </div>
   );
 }
