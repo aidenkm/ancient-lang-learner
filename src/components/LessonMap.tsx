@@ -11,9 +11,11 @@ interface LessonMapProps {
   progress: UserProgress;
   onSelectLesson: (lessonId: string) => void;
   onBack: () => void;
+  dueReviewCount: number;
+  onStartReview: () => void;
 }
 
-export default function LessonMap({ language, progress, onSelectLesson, onBack }: LessonMapProps) {
+export default function LessonMap({ language, progress, onSelectLesson, onBack, dueReviewCount, onStartReview }: LessonMapProps) {
   const stages = language === 'greek' ? greekStages : hebrewStages;
   const langName = language === 'greek' ? '고대 그리스어' : '성서 히브리어';
   const langIcon = language === 'greek' ? '🏛️' : '📜';
@@ -37,6 +39,21 @@ export default function LessonMap({ language, progress, onSelectLesson, onBack }
             <h1 className="text-xl font-bold">{langName}</h1>
           </div>
           <XPBar xp={progress.xp} level={progress.level} />
+          {dueReviewCount > 0 && (
+            <motion.button
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={onStartReview}
+              className="w-full mt-3 p-3 rounded-xl bg-duo-orange/20 border-2 border-duo-orange
+                text-duo-orange font-bold text-sm hover:bg-duo-orange/30 transition-all cursor-pointer
+                flex items-center justify-center gap-2"
+            >
+              <span>🔄</span>
+              복습하기 ({dueReviewCount}단어)
+            </motion.button>
+          )}
         </div>
       </div>
 

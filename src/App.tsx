@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Language, Lesson } from './types';
+import { Language, Lesson, Exercise } from './types';
 import { useGameState } from './hooks/useGameState';
 import { useAuth } from './hooks/useAuth';
 import { useAdmin } from './hooks/useAdmin';
+import { useReviewDeck } from './hooks/useReviewDeck';
 import { isSupabaseConfigured } from './lib/supabase';
 import { greekStages } from './data/greek/index';
 import { hebrewStages } from './data/hebrew/index';
@@ -20,6 +21,7 @@ function App() {
   const { user, loading: authLoading, signIn, signUp, signOut, configured: authConfigured } = useAuth();
   const { isAdmin } = useAdmin(user?.id);
   const { gameState, selectLanguage, getProgress, addXp, completeLesson, updateStreak, completePlacement, updateProgress } = useGameState(user?.id);
+  const { addWrongWords, getDueCards, generateReviewExercises, promoteCard, demoteCard } = useReviewDeck();
   const [screen, setScreen] = useState<Screen>(authConfigured ? 'auth' : 'languageSelect');
   const [currentLesson, setCurrentLesson] = useState<Lesson | null>(null);
   const [guestMode, setGuestMode] = useState(false);
@@ -98,7 +100,7 @@ function App() {
     }
   };
 
-  const handleLessonComplete = (correctCount: number, totalCount: number) => {
+  const handleLessonComplete = (correctCount: number, totalCount: number, wrongExercises: Exercise[] = []) => {
     if (!currentLesson) return;
     const xpEarned = correctCount * 10;
     addXp(xpEarned);
@@ -108,6 +110,22 @@ function App() {
     const lang = gameState.selectedLanguage!;
     const stages = lang === 'greek' ? greekStages : hebrewStages;
     const progress = gameState[lang];
+
+    // SRS: 틀린 단어를 review deck에 추가
+    if (wrongExercises.length > 0) {
+      const wrongWords = wrongExercises
+        .filter(ex => ex.question && ex.correctAnswer)
+        .map(ex => ({
+          word: ex.question,
+          gloss: typeof ex.correctAnswer === 'string' ? ex.correctAnswer : ex.correctAnswer[0],
+          parsing: ex.hint || '',
+          root: undefined,
+        }));
+      if (wrongWords.length > 0) {
+        const newDeck = addWrongWords(progress.reviewDeck || [], wrongWords);
+        updateProgress({ reviewDeck: newDeck });
+      }
+    }
 
     for (const stage of stages) {
       if (stage.id === progress.currentStage) {
@@ -122,6 +140,51 @@ function App() {
       }
     }
 
+    setCurrentLesson(null);
+    setScreen('lessonMap');
+  };
+
+  const handleStartReview = () => {
+    const lang = gameState.selectedLanguage!;
+    const progress = gameState[lang];
+    const dueCards = getDueCards(progress.reviewDeck || []);
+    if (dueCards.length === 0) return;
+
+    const exercises = generateReviewExercises(dueCards);
+    const reviewLesson: Lesson = {
+      id: `review-${Date.now()}`,
+      title: `복습 (${dueCards.length}단어)`,
+      description: '간격 반복 복습',
+      exercises,
+    };
+    setCurrentLesson(reviewLesson);
+    setScreen('lesson');
+  };
+
+  const handleReviewComplete = (correctCount: number, totalCount: number, wrongExercises: Exercise[] = []) => {
+    const lang = gameState.selectedLanguage!;
+    const progress = gameState[lang];
+    let deck = [...(progress.reviewDeck || [])];
+
+    // 복습 레슨의 각 exercise 결과를 deck에 반영
+    const dueCards = getDueCards(deck);
+    const answeredWords = new Set<string>();
+
+    for (const ex of wrongExercises) {
+      answeredWords.add(ex.question);
+      deck = demoteCard(deck, ex.question);
+    }
+
+    // 틀리지 않은 due 카드는 승급
+    for (const card of dueCards) {
+      if (!answeredWords.has(card.word)) {
+        deck = promoteCard(deck, card.word);
+      }
+    }
+
+    updateProgress({ reviewDeck: deck });
+    addXp(correctCount * 5); // 복습은 5XP
+    updateStreak();
     setCurrentLesson(null);
     setScreen('lessonMap');
   };
@@ -266,6 +329,8 @@ function App() {
             progress={getProgressForMap()!}
             onSelectLesson={handleSelectLesson}
             onBack={handleBack}
+            dueReviewCount={getDueCards(gameState[gameState.selectedLanguage].reviewDeck || []).length}
+            onStartReview={handleStartReview}
           />
         )}
 
@@ -277,7 +342,7 @@ function App() {
           <LessonPlayer
             lesson={currentLesson}
             language={gameState.selectedLanguage}
-            onComplete={handleLessonComplete}
+            onComplete={currentLesson.id.startsWith('review-') ? handleReviewComplete : handleLessonComplete}
             onQuit={() => {
               setCurrentLesson(null);
               setScreen('lessonMap');

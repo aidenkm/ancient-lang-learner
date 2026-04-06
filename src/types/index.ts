@@ -96,6 +96,18 @@ export interface PlacementQuestion {
   type: 'letterIdentify' | 'vocabulary' | 'grammar' | 'translation' | 'reading';
 }
 
+// ===== Spaced Repetition (SRS) =====
+
+export interface ReviewCard {
+  word: string;          // 원어
+  gloss: string;         // 한국어 뜻
+  parsing: string;       // 문법 파싱
+  root?: string;         // 어근
+  box: number;           // Leitner box (1-4, 4=학습완료)
+  nextReview: string;    // ISO date (YYYY-MM-DD)
+  wrongCount: number;    // 총 틀린 횟수
+}
+
 export interface UserProgress {
   language: Language;
   completedLessons: string[];
@@ -108,6 +120,7 @@ export interface UserProgress {
   placementScore: number;
   placementCompleted: boolean;
   lessonCrowns: Record<string, number>;
+  reviewDeck: ReviewCard[];
 }
 
 export interface GameState {
@@ -129,6 +142,7 @@ export const defaultProgress = (language: Language): UserProgress => ({
   placementScore: 0,
   placementCompleted: false,
   lessonCrowns: {},
+  reviewDeck: [],
 });
 
 export const defaultGameState: GameState = {

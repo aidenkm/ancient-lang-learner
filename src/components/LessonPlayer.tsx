@@ -11,7 +11,7 @@ import Button from './common/Button';
 interface LessonPlayerProps {
   lesson: Lesson;
   language: Language;
-  onComplete: (correctCount: number, totalCount: number) => void;
+  onComplete: (correctCount: number, totalCount: number, wrongExercises: Exercise[]) => void;
   onQuit: () => void;
 }
 
@@ -71,6 +71,7 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
   const [comboCount, setComboCount] = useState(0);
   const [showCombo, setShowCombo] = useState(false);
   const [reviewCount, setReviewCount] = useState(0);
+  const [wrongExercises, setWrongExercises] = useState<Exercise[]>([]);
 
   const exercise = exerciseQueue[currentIndex];
   const originalCount = lesson.exercises.length;
@@ -88,6 +89,10 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
       }
     } else {
       setComboCount(0);
+      // Track wrong exercises for SRS (only original, not review variants)
+      if (!exercise.id.includes('-review-')) {
+        setWrongExercises(prev => [...prev, exercise]);
+      }
       // Add review exercise (max 3 reviews to prevent infinite loop)
       if (reviewCount < 3) {
         const reviewEx = createReviewExercise(exercise, reviewCount + 1);
@@ -166,7 +171,7 @@ export default function LessonPlayer({ lesson, language, onComplete, onQuit }: L
             </div>
           </div>
 
-          <Button onClick={() => onComplete(correctCount, originalCount)} fullWidth size="lg">
+          <Button onClick={() => onComplete(correctCount, originalCount, wrongExercises)} fullWidth size="lg">
             계속하기
           </Button>
         </motion.div>
